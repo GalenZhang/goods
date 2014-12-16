@@ -26,7 +26,6 @@ public class MMTag extends AbstractUITag {
 		super.populateParams();
 		MM mm= (MM)component;
 		mm.setMessage(message);
-		System.out.println("test..");
 	}
 	
 	public void setMessage(String message)
