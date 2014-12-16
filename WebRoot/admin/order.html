@@ -1,0 +1,162 @@
+<div ng-controller="orderController">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>订单信息管理</h1>
+				</div>
+			</div>
+			
+			<!-- /.row -->
+
+			<div class="row">
+				<div id="addOrder_btn" class="col-lg-5">
+					<button type="button" id="loading-example-btn"
+						data-loading-text="Loading..." class="btn btn-primary"
+						ng-click="add()">添加</button>
+				</div>
+			</div>
+			<div class="table-responsive" style="margin-top: 10px;">
+			   <!-- 声明webbrowser -->
+			   <object id="wb" classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2 height="0" width="0"></object>
+				<table class="table table-bordered table-hover tablesorter">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>订单编号 <i class="fa fa-sort"></i></th>
+							<th>业务员</th>
+							<th>代理商</th>
+							<th>数量</th>
+							<th>创建时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="tableOrderItem in tableOrderItems">
+							<td>{{$index + 1 }}</td>
+							<td>{{tableOrderItem.orderNumber}}</td>
+							<td>{{tableOrderItem.empId | orderempNameFilter}}</td>
+							<td>{{tableOrderItem.angentId | orderangentNameFilter}}</td>
+							<td>{{tableOrderItem.quantity}}</td>
+							<td>{{tableOrderItem.createtime}}</td>
+							<td >
+							   <p id="spanColorP" style=" color: green;">{{tableOrderItem.state | orderStateFilter}}</p>
+							</td>
+							<td>
+							    <a ng-click="remove(tableOrderItem.id)" title="删除" id="{{tableOrderItem.id}}">
+							       <span class="glyphicon glyphicon-remove"></span>
+							    </a>
+							    <a ng-click="update(tableOrderItem.id)" title="详情/更新">
+							       <span class="glyphicon glyphicon-cog"></span>
+							    </a>
+							    <a ng-click="loadTabletInfo(tableOrderItem.id)" id="{{'loadTablet'+tableOrderItem.id}}" title="订单平板详情">
+							       <span class="glyphicon glyphicon-list-alt"></span>
+							    </a>
+							    <a ng-click="orderPrint(tableOrderItem.id,tableOrderItem.orderNumber,tableOrderItem.empId,tableOrderItem.angentId,tableOrderItem.quantity,tableOrderItem.createtime)" title="预览/打印">
+							       <span class="glyphicon glyphicon-print"></span>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+<!-- ordertableController :  我-->	
+
+<div class="modal fade" id="orderTabletInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="updateOrderController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">当前定单平板信息</h4>
+      </div>
+      <div class="modal-body">
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>   
+      </div>
+    </div>
+  </div>
+</div>
+
+	
+	<!-- insert  Modal -->
+<div class="modal fade" id="orderinfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="updateOrderController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">订单信息</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form role="form">
+          <div class="form-group">
+          
+            <label for="empname">下单经理</label>
+            <select id="empName" class="form-control" placeholder="下单经理" ng-model="sufansSysOrder.empId">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Orderemployees" value="{{emp.empID}}" ng-selected=" emp.empID == sufansSysOrder.empId">{{emp.empName}}</option>
+			</select>
+
+			<select id="empNametwo" class="form-control" placeholder="下单经理" ng-model="sufansSysOrder.empId" disabled="disabled">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Orderemployees" value="{{emp.empID}}" ng-selected=" emp.empName == sufansSysOrder.empId">{{emp.empName}}</option>
+			</select>
+
+          </div>
+          <div class="form-group">
+          
+            <label for="angentname">付款代理</label>
+            <select id="angentName" class="form-control" placeholder="付款代理" ng-model="sufansSysOrder.angentId">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="ang in OrdereAngents" value="{{ang.angentID}}" ng-selected=" ang.angentID == sufansSysOrder.angentId">{{ang.angentName}}</option>
+			</select>
+
+			<select id="angentNametwo" class="form-control" placeholder="付款代理" ng-model="sufansSysOrder.angentId" disabled="disabled">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="ang in OrdereAngents" value="{{ang.angentID}}" ng-selected=" ang.angentName == sufansSysOrder.angentId">{{ang.angentName}}</option>
+			</select>
+
+          </div>
+		  <div class="form-group">
+		    <label for="quantity">下单数量</label>
+		    <input type="text" class="form-control" id="quantity" ng-model="sufansSysOrder.quantity" placeholder="下单数量">
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="description">订单描述</label>
+		    <textarea class="form-control" rows="5"  style="resize:none"  ng-model="sufansSysOrder.description" placeholder="订单描述"></textarea>
+		  </div>
+		  <div class="form-group" id="createtimeDiv">
+		    <label for="createtime">下单时间</label>
+		    <input type="text" class="form-control" id="createtime" ng-model="sufansSysOrder.createtime" placeholder="下单时间" disabled="disabled">
+		  </div>
+		  <br/>
+		  <div id="orderSDIV">
+		    
+		  </div>
+		 
+      </form>
+		
+		
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" id="btnState" class="btn btn-primary" ng-click="save()"> 保 存 </button>    
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+</div>
+
+

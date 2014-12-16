@@ -1,0 +1,137 @@
+<div class="row" ng-controller="angentController">
+<div class="col-lg-12">
+	<div class="row">
+	     <div class="col-lg-12">
+	       <h1>代理商信息</h1>
+	     </div>
+	</div><!-- /.row -->
+
+	<div class="row">
+	     <div class="col-lg-5">
+			<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary" ng-click="add()">
+			添加
+			</button>
+	     </div>
+	</div><!-- /.row -->
+
+	
+	<div class="table-responsive" style="margin-top: 10px;">
+	       <table class="table table-bordered table-hover tablesorter">
+	         <thead>
+	           <tr>
+	           	 <th>序号</th>
+	             <th> 姓名 <i class="fa fa-sort"></i></th>
+	             <th> 性别 </th>
+	             <th> 年龄</th>
+	             <th> 手机号码</th>
+	             <th> 座机号码</th>
+	             <th> 公司</th>
+	             <th> 详细地址</th>
+	             <th> 代理类型</th>
+	             <th> 中介人 </th>
+	             <th> 操作 </th>
+	           </tr>
+	         </thead>
+	         <tbody>
+	           <tr ng-repeat="tableAngentItem in tableAngentItems">
+	           	 <td>{{$index + 1}}</td>
+	             <td>{{tableAngentItem.name}}</td>
+	             <td>{{tableAngentItem.sex | sexFilter}}</td>
+	             <td>{{tableAngentItem.age}}</td>
+	             <td>{{tableAngentItem.phone}}</td>
+	             <td>{{tableAngentItem.tel}}</td>
+	             <td>{{tableAngentItem.company}}</td>
+	             <td>{{tableAngentItem.address}}</td>
+	             <td>{{tableAngentItem.agentTppeId | angentTypeFilter}}</td>
+	             <td>{{tableAngentItem.emp_id | empNameFilter}}</td> 
+	             <td>
+	             	<a ng-click="remove(tableAngentItem.id)" title="删除"><span class="glyphicon glyphicon-remove"></span></a>
+	             	<a ng-click="update(tableAngentItem.id)" title="更新"><span class="glyphicon glyphicon-cog"></span></a>
+	             </td>
+	           </tr>
+	         </tbody>
+	       </table>
+	</div>
+</div>
+</div>
+
+<!-- insert  Modal -->
+<div class="modal fade" id="angentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="updateAngentController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">代理商信息</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form role="form">
+          <div class="form-group">
+          
+            <label for="empname">绑定销售经理</label>
+            <select id="empName" class="form-control" placeholder="销售经理" ng-model="sufansSysAngent.emp_id">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empID == sufansSysAngent.emp_id">{{emp.empName}}</option>
+			</select>
+			<select id="empNametwo" class="form-control" placeholder="销售经理" ng-model="sufansSysAngent.emp_id" disabled="disabled">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empName == sufansSysAngent.emp_id">{{emp.empName}}</option>
+			</select>
+
+          </div>
+		  <div class="form-group">
+		    <label for="username">用户</label>
+		    <input type="text" class="form-control" id="username" ng-model="sufansSysAngent.name" placeholder="姓名">
+		  </div>
+		   <div class="form-group">
+		    <label for="sex">性别</label>
+		    <div class="form-control">
+		    <input type="radio" name="sex" ng-model="sufansSysAngent.sex" value="1" checked="checked">男&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input type="radio" name="sex" ng-model="sufansSysAngent.sex" value="0">女
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="age">年龄</label>
+		    <input type="text" class="form-control" id="age" ng-model="sufansSysAngent.age" placeholder="年龄">
+		  </div>
+		  <div class="form-group">
+		    <label for="phone">手机</label>
+	        <input class="form-control" id="phone" ng-model="sufansSysAngent.phone" placeholder="手机号码">
+		  </div>
+		  <div class="form-group">
+		    <label for="tel">座机</label>
+	        <input class="form-control" id="tel" ng-model="sufansSysAngent.tel" placeholder="格式如：0755-61732226">
+		  </div>
+		  <div class="form-group">
+		    <label for="company">公司</label>
+	        <input class="form-control" id="company" ng-model="sufansSysAngent.company" placeholder="所在公司/名下公司">
+		  </div>
+		  <div class="form-group">
+		    <label for="address">地址</label>
+	        <input class="form-control" id="tel" ng-model="sufansSysAngent.address" placeholder="详细地址">
+		  </div>
+		  <div class="form-group">
+		    <label for="agentTppeId">类型</label>
+	        <!-- <input class="form-control" id="agentTppeId" ng-model="sufansSysAngent.agentTppeId" placeholder="代理商类型"> -->
+	        <select id="agentTppeId" class="form-control" ng-model="sufansSysAngent.agentTppeId"  placeholder="代理商类型">
+	        <option value="1">华中地区总代</option>
+	        <option value="2">华南地区总代</option>
+	        <option value="3">华北地区总代</option>
+	        <option value="4">省级总代</option>
+	        <option value="5">市级总代</option>
+	        </select>
+		  </div>
+      </form>
+		
+		
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" class="btn btn-primary" ng-click="save()"> 保 存 </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

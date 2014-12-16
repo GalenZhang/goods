@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>搜粉（SOFANS）管理</title>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+	<link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="../login/login.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="../img/logo.ico">
+  </head>
+  
+  <body>
+   
+<div id="login-container">
+	
+	
+	<div id="login-header">
+		
+		<h3>搜粉（SOFANS）运营管理系统</h3>
+		
+	</div> <!-- /login-header -->
+	
+	<div id="login-content" class="clearfix">
+	
+		<form action="login.do" method="post" onsubmit="return validate();"/>
+				<fieldset>
+					<div class="control-group">
+						<label for="username">账号</label>
+						<div class="controls">
+							<input type="text" class="" id="username" name="username"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="password">密码</label>
+						<div class="controls">
+							<input type="password" class="" id="password" name="password"/>
+						</div>
+					</div>
+				</fieldset>
+				<!-- 
+				<div id="remember-me" class="pull-left">
+					<input type="checkbox" name="remember" id="remember" style="margin-top: 5px;"/>
+					<label id="remember-label" for="remember">Remember Me</label>
+				</div>
+				 -->
+				<div class="pull-right">
+					<button type="submit" class="btn btn-warning btn-large">
+					&nbsp; 登 录 &nbsp;
+					</button>
+				</div>
+		</form>
+			
+	</div> <!-- /login-content -->
+		
+	<!-- 
+	<div id="login-extra">
+		
+		<p>Don't have an account? <a href="javascript:;">Sign Up.</a></p>
+		
+		<p>Remind Password? <a href="forgot_password.html">Retrieve.</a></p>
+		
+	</div> <!-- /login-extra -->
+	
+</div> 
+<script src="../vendor/jquery/jquery-1.10.2.js"></script>
+<script>
+  function validate(){
+  	var username = $('#username');
+  	var password = $('#password');
+  	
+  	if (username.val() == '')
+  	{
+  		alert('用户名不能为空！');
+  		username.focus();
+  		return false;
+  	}
+  	if (password.val() == '')
+  	{
+  		alert('密码不能为空！');
+  		password.focus();
+  		return false;
+  	}
+  	return true;
+  }
+</script>
+
+  </body>
+</html>

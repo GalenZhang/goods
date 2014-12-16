@@ -1,0 +1,92 @@
+
+<div>
+   <div class="table-responsive" style="margin-top: 10px;">
+      <table class="" style=" border: 1px solid #ccc; ">
+					<thead>
+						<tr>
+							<th>∂©µ•±‡∫≈ <i class="fa fa-sort"></i></th>
+							<th>œ˙ €æ≠¿Ì</th>
+							<th>¥˙¿Ì…Ã</th>
+							<th>∂©µ• ˝¡ø</th>
+							<th>¥¥Ω® ±º‰</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td id='td1'></td>
+							<td id='td2'></td>
+							<td id='td3'></td>
+							<td id='td4'></td>
+							<td id='td5'></td>
+						</tr>
+					</tbody>
+	  </table>
+   </div>
+
+</div>
+
+<!-- ÔøΩÔøΩ”° -->
+
+<script type="text/javascript">
+
+ 
+    
+
+  var  li = getparam();
+
+     var id = li[0];
+     var orderNumber = li[1];
+     var empid = li[2];
+     var angentid = li[3];
+     var quantity = li[4];
+     var createtime = li[5];
+     
+     
+     
+     //document.getElementById('td1').innerText = orderNumber;
+     
+     document.getElementById('td1').appendChild(document.createTextNode(orderNumber));
+     document.getElementById('td2').appendChild(document.createTextNode(empid));
+     document.getElementById('td3').appendChild(document.createTextNode(angentid));
+     document.getElementById('td4').appendChild(document.createTextNode(quantity));
+     document.getElementById('td5').appendChild(document.createTextNode(createtime));
+     
+     
+     
+    // alert(id+','+orderNumber+','+empid+','+angentid+','+quantity+','+createtime);
+
+
+    
+	function getparam(){
+	    var query = location.search.substring(1);
+	    var values= query.split("&");
+	    var varList = [];
+	    for(var i = 0; i < values.length; i++) {
+	        var pos = values[i].indexOf('=');
+	        if (pos == -1) continue;
+	        var paramname = values[i].substring(0, pos);
+	        var value = values[i].substring(pos+1);
+	        //alert(paramname +","+value ); 
+	        varList[i]=value;
+	    }
+	    return varList;;
+	}
+
+
+function printit() {
+	if (confirm(' «∑Ò¥Ú”°£ø')) {
+		window.print();
+	}
+}
+</script>
+<center class="Noprint">
+	<p class="Noprint">
+		<object id="wb" classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2 height="0" width="0"></object>
+		<input type="button" name="button_print" value="¥Ú”°" onclick="printit()">
+	<!-- 	<input type=button name=button_setup value="ÔøΩÔøΩ”°“≥ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ" class="noprint" onclick="printsetup();">
+		<input type=button name=button_show value="ÔøΩÔøΩ”°‘§ÔøΩÔøΩ" class="noprint" onclick="printpreview()">  -->
+		<input type="button" name="button_fh" value="πÿ±’" onclick="javascript:window.close();">
+	</p>
+</center>
+
+				

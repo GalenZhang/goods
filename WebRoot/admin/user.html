@@ -1,0 +1,99 @@
+<div class="row" ng-controller="userController">
+<div class="col-lg-12">
+	<div class="row">
+	     <div class="col-lg-12">
+	       <h1>用户信息</h1>
+	     </div>
+	</div><!-- /.row -->
+
+	<div class="row">
+	     <div class="col-lg-5">
+			<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary" ng-click="add()">
+			添加
+			</button>
+	     </div>
+	</div><!-- /.row -->
+	
+	<div class="table-responsive" style="margin-top: 10px;">
+	       <table class="table table-bordered table-hover tablesorter">
+	         <thead>
+	           <tr>
+	           	 <th>序号</th>
+	             <th> 名称 <i class="fa fa-sort"></i></th>
+	             <th> 邮箱 </th>
+	             <th> 电话 </th>
+	             <th> 角色 </th>
+	             <th>绑定员工</th>
+	             <th> 操作 </th>
+	           </tr>
+	         </thead>
+	         <tbody>
+	           <tr ng-repeat="tableItem in tableItems">
+	           	 <td>{{$index + 1}}</td>
+	             <td>{{tableItem.name}}</td>
+	             <td>{{tableItem.email}}</td>
+	             <td>{{tableItem.phone}}</td>
+	             <td>{{tableItem.role}}</td>
+	             <td>{{tableItem.emp_id | empNameFilterByuser}}</td>
+	             <td>
+	             	<a ng-hide="tableItem.id==1" ng-click="remove(tableItem.id)" title="删除"><span class="glyphicon glyphicon-remove"></span></a>
+	             	<a ng-hide="tableItem.id==1" ng-click="update(tableItem.id)" title="更新"><span class="glyphicon glyphicon-cog"></span></a>
+	             </td>
+	           </tr>
+	         </tbody>
+	       </table>
+	</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="updateUserController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">用户信息</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form role="form">
+		  <div class="form-group">
+		    <label for="username">用户</label>
+		    <input type="text" class="form-control" id="username" ng-model="sufansSysUser.name" placeholder="用户名称">
+		  </div>
+		   <div class="form-group">
+		    <label for="password">密码</label>
+		    <input type="text" class="form-control" id="password" ng-model="sufansSysUser.password" placeholder="用户名称">
+		  </div>
+		  <div class="form-group">
+		    <label for="email">邮箱</label>
+		    <input type="text" class="form-control" id="email" ng-model="sufansSysUser.email" placeholder="邮箱">
+		  </div>
+		  <div class="form-group">
+		    <label for="cellphone">手机</label>
+	        <input class="form-control" id="cellphone" ng-model="sufansSysUser.phone" placeholder="手机">
+		  </div>
+		  <div class="form-group">
+          
+            <label for="empname">绑定员工</label>
+            <select id="empName" class="form-control" placeholder="销售经理" ng-model="sufansSysUser.emp_id">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empID == sufansSysUser.emp_id">{{emp.empName}}</option>
+			</select>
+			<select id="empNametwo" class="form-control" placeholder="销售经理" ng-model="sufansSysUser.emp_id" disabled="disabled">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empName == sufansSysUser.emp_id">{{emp.empName}}</option>
+			</select>
+          </div>
+      </form>
+		
+		
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" class="btn btn-primary" ng-click="save()"> 保 存 </button>
+      </div>
+    </div>
+  </div>
+</div>

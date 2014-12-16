@@ -1,0 +1,182 @@
+<div ng-controller="employeeController">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>员工信息</h1>
+				</div>
+			</div>
+			<!-- /.row -->
+	
+			<div class="row">
+				<div class="col-lg-5">
+					<button type="button" id="loading-example-btn"
+						data-loading-text="Loading..." class="btn btn-primary"
+						ng-click="add()">添加</button>
+				</div>
+			</div>
+			<!-- /.row -->
+	
+			<div class="table-responsive" style="margin-top: 10px;">
+				<table class="table table-bordered table-hover tablesorter">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>姓名 <i class="fa fa-sort"></i></th>
+							<th>部门</th>
+							<th>职位</th>
+							<th>工号</th>
+							<th>籍贯</th>
+							<th>电话</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="tableEmployeeItem in tableEmployeeItems">
+							<td>{{getIndex($index)}}</td>
+							<td>{{tableEmployeeItem.name}}</td>
+							<td>{{tableEmployeeItem.deptId | deptFilter}}</td>
+							<td>{{tableEmployeeItem.postId | postFilter}}</td>
+							<td>{{tableEmployeeItem.workerNum}}</td>
+							<td>{{tableEmployeeItem.hometowAddress}}</td>
+							<td>{{tableEmployeeItem.phone}}</td>
+							<td><a ng-click="remove(tableEmployeeItem.id)" title="删除">
+							       <span class="glyphicon glyphicon-remove"></span>
+							    </a>
+							    <a ng-click="update(tableEmployeeItem.id)" title="詳情">
+							       <span class="glyphicon glyphicon-cog"></span>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- employee info  Modal  -->
+	<div class="modal fade" id="employeeinfoModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">详细信息</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form">
+						<div class="form-group">
+							<label for="employeename">用户</label> <input type="text"
+								class="form-control" id="name" ng-model="sufansSysEmployee.name"
+								placeholder="姓名">
+						</div>
+	
+	                     
+						<div class="form-group" id="workernumberDiv">
+							<label for="worker_num">员工编号</label> <input type="text"
+								class="form-control" id="workerNum"
+								ng-model="sufansSysEmployee.workerNum" placeholder="员工编号" disabled="disabled">
+						</div>
+						 
+						<div class="form-group">
+							<label for="department">部门</label>
+			
+							<select id="deptId" class="form-control" placeholder="部门" ng-model="sufansSysEmployee.deptId">
+								<option value="">-- 请选择 --</option>
+								<option ng-repeat="department in departments" value="{{department.value}}" ng-selected="department.value == sufansSysEmployee.deptId">{{department.label}}</option>
+							</select>
+							
+						</div>
+						<div class="form-group">
+							<label for="position">职位</label>
+							<!-- <input type="text" class="form-control" id="postId" ng-model="sufansSysEmployee.postId" placeholder="职位"> -->
+							<select id="postId" class="form-control"
+								ng-model="sufansSysEmployee.postId" placeholder="职位">
+								<option value="">-- 请选择 --</option>
+								<option ng-repeat="position in positions" value="{{position.value}}" ng-selected="position.value == sufansSysEmployee.postId">{{position.label}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="entry_worktime">入职时间</label>
+							<p class="input-group">
+								<input type="text" placeholder="入职时间" readonly
+									class="form-control" datepicker-popup="{{format}}"
+									ng-model="sufansSysEmployee.entryWorktime" is-open="opened"
+									min-date="minDate" max-date="'2015-06-22'"
+									datepicker-options="dateOptions"
+									date-disabled="disabled(date, mode)" ng-required="true"
+									close-text="Close" /> <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+										ng-click="open($event)">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+							</p>
+						</div>
+						<div class="form-group">
+							<label for="sex">性别</label>
+							<div class="form-control">
+								<input type="radio" name="sex" ng-model="sufansSysEmployee.sex" value="1">男&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="sex" ng-model="sufansSysEmployee.sex" value="0">女
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="age">年龄</label> <input type="text"
+								class="form-control" id="age" ng-model="sufansSysEmployee.age"
+								placeholder="年龄">
+						</div>
+						<div class="form-group">
+							<label for="id_card">身份证号码</label> <input type="text"
+								class="form-control" id="idCard"
+								ng-model="sufansSysEmployee.idCard" placeholder="身份证号码">
+						</div>
+						<div class="form-group">
+							<label for="education">学历</label>
+							<!-- <input type="text"
+								class="form-control" id="education"
+								ng-model="sufansSysEmployee.education" placeholder="学历"> -->
+							<select id="education" class="form-control"
+								ng-model="sufansSysEmployee.education" placeholder="学历">
+								<option value="大专生">大专生</option>
+								<option value="本科生">本科生</option>
+								<option value="研究生">研究生</option>
+								<option value="博士生">博士生</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="hometow_address">户籍</label> <input type="text"
+								class="form-control" id="hometowAddress"
+								ng-model="sufansSysEmployee.hometowAddress" placeholder="户籍">
+						</div>
+						<div class="form-group">
+							<label for="address">详细地址</label> <input type="text"
+								class="form-control" id="address"
+								ng-model="sufansSysEmployee.address" placeholder="现住址">
+						</div>
+						<div class="form-group">
+							<label for="phone">手机</label> <input class="form-control"
+								id="phone" ng-model="sufansSysEmployee.phone" placeholder="手机号码">
+						</div>
+						<div class="form-group">
+							<label for="email">邮箱</label> <input type="text"
+								class="form-control" id="email"
+								ng-model="sufansSysEmployee.email" placeholder="邮箱">
+						</div>
+					</form>
+	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						关 闭</button>
+					<button type="button" class="btn btn-primary" ng-click="save()">
+						保 存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

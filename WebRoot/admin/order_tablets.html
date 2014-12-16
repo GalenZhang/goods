@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sofansAPP">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>此订单平板详细信息</title>
+<!-- Bootstrap core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Add custom CSS here -->
+<link href="../vendor/bootstrap/css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="../vendor/font-awesome/css/font-awesome.min.css">
+<link href="../vendor/page/simplePagination.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery-1.10.2.js"></script>
+<script src="../vendor/jquery/jquery.html5uploader.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/angular/angular.js"></script>
+<script src="../vendor/bootstrap/js/ui-bootstrap-tpls-0.11.0.js"></script>
+<script src="../admin/js/module/app.js"></script>
+<script src="../admin/js/order_tablets.js"></script>
+
+
+
+
+</head>
+
+<body>
+	<div ng-controller="tabCusController">
+	   
+	   <div class="table-responsive" style="margin-top: 10px;">
+	   <h4 style="color: green;">此订单的所有平板记录</h4>
+				<table class="table table-bordered table-hover tablesorter">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>IMEI码<i class="fa fa-sort"></i></th>
+							<th>账号</th>
+							<th>密码</th>
+							<th>类型</th>
+							<th>激活时间</th>
+							<th>最后激活时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="tableCusItem in tableCusItems">
+							<td>{{$index + 1 }}</td>
+							<td>{{tableCusItem[0].imei}}</td>
+							<td>{{tableCusItem[1].sfKey }}</td>
+							<td>{{tableCusItem[1].password }}</td>
+							<td>{{tableCusItem[0].tabletType }}</td>
+							<td>{{tableCusItem[0].activationtime }}</td>
+							<td>{{tableCusItem[0].lastActivationtime}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	   
+	</div>
+
+
+</body>
+</html>
