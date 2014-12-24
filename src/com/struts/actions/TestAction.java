@@ -2,7 +2,11 @@ package com.struts.actions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ExceptionMapping;
@@ -12,6 +16,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sofans.dao.ILoginService;
 
@@ -36,6 +41,14 @@ public class TestAction extends ActionSupport{
 	    		@Action(value="login2", 
 	    		results={@Result(name="tag", location="/tag.jsp")})})
 	    public String login(){
+	    	
+	    	HttpServletRequest request = ServletActionContext.getRequest();
+	    	request.setAttribute("username", "zhangsan");
+	    	
+	    	ActionContext actionContext = ActionContext.getContext();
+	    	Map<String, Object> session = actionContext.getSession();
+	    	session.put("age", 555);
+	    	
 	       return "tag";     
 	    }
 	    
