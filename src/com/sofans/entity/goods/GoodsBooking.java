@@ -1,4 +1,4 @@
-package com.struts.entity;
+package com.sofans.entity.goods;
 // default package
 
 import java.sql.Timestamp;

@@ -20,6 +20,7 @@ import com.sofans.entity.SofansSysModuleAction;
 import com.sofans.entity.SofansSysUser;
 import com.sofans.entity.SofansSysUserRole;
 import com.sofans.entity.UserSession;
+import com.sofans.entity.goods.User;
 import com.sofans.service.CommonService;
 import com.sofans.util.MD5Util;
 
@@ -108,6 +109,13 @@ public class LoginServiceImpl extends CommonService implements ILoginService{
 	
 	public int save(SofansSysUser t) throws Exception {
 		return (Integer)commonDAO.save(t);
+	}
+
+
+	@Override
+	public User goodsLogin(String userName, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -7,17 +7,18 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import com.sofans.entity.goods.User;
 import com.sofans.service.IServiceBase;
-import com.struts.entity.User;
 
 @ParentPackage("struts-default")
 @Namespace(value="/user")
-public class UserAction extends ActionSupport implements ModelDriven<User>{
+public class UserAction extends ActionSupport{
 	
 	@Autowired
 	private IServiceBase goodsSysUserServiceImpl;
 	private User user = new User();
+	private String username;
+	private String password;
 
 	/**
 	 * 
@@ -33,8 +34,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 	})
 	public String regUser(){
 		
-		user.setUsername("user001");
-		user.setPassword("123");
+		user.setUsername(username);
+		user.setPassword(password);
 		int id = 0;
 		try {
 			id = goodsSysUserServiceImpl.save(user);
@@ -48,9 +49,39 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 		return "fail";
 	}
 
-	@Override
-	public User getModel() {	
+	public IServiceBase getGoodsSysUserServiceImpl() {
+		return goodsSysUserServiceImpl;
+	}
+
+	public void setGoodsSysUserServiceImpl(IServiceBase goodsSysUserServiceImpl) {
+		this.goodsSysUserServiceImpl = goodsSysUserServiceImpl;
+	}
+
+	public User getUser() {
 		return user;
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+
 
 }

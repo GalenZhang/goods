@@ -9,7 +9,7 @@ import com.sofans.entity.SofansSysUser;
 import com.sofans.entity.SofansSysUserRole;
 import com.sofans.service.CommonService;
 import com.sofans.util.MD5Util;
-import com.struts.entity.User;
+import com.sofans.entity.goods.User;
 
 @Service
 public class GoodsSysUserServiceImpl extends CommonService{
