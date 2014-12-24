@@ -1,4 +1,4 @@
-package com.struts.actions;
+package com.struts.action.member;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -12,7 +12,7 @@ import com.sofans.service.IServiceBase;
 
 @ParentPackage("struts-default")
 @Namespace(value="/user")
-public class UserAction extends ActionSupport{
+public class RegisterAction extends ActionSupport{
 	
 	@Autowired
 	private IServiceBase goodsSysUserServiceImpl;

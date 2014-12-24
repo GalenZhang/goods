@@ -1,4 +1,4 @@
-package com.struts.actions;
+package com.struts.action.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,10 +59,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		
 		if(user != null){
 			session.setAttribute("name", user.getUsername());
-			/**
-			 * session.setAttribute("role", user.getRole());
-			 *    分析： 应该把admin表和user表合在一起， 用一个字段来标注是否为管理员
-			 */
+
+			session.setAttribute("role", user.getIs_admin());
+
 			return "login_success";
 			
 		}
