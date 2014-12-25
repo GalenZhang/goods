@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sofans.dao.ILoginService;
 import com.sofans.entity.goods.User;
+import com.sofans.util.AjaxReturnData;
 
 
 @ParentPackage("struts-default")
@@ -31,6 +32,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private HttpServletRequest httpServletRequest = ServletActionContext.getRequest();
 	@Autowired
 	private ILoginService goodsLoginServiceImpl;
+	AjaxReturnData ajaxReturnData = new AjaxReturnData();
 	
 	
 	@Override
@@ -40,9 +42,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	}
 	
 	
+	
+	
 	@Action(value="login",results={
-			@Result(name="login_fail",location="/login_reg.jsp"),
-			@Result(name="login_success",location="/goodsIndex.jsp")
+			@Result(name="login_success",location="/goodsIndex.jsp")		
 	})
 	public String login(){
 		
@@ -59,14 +62,17 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		
 		if(user != null){
 			session.setAttribute("name", user.getUsername());
-
 			session.setAttribute("role", user.getIs_admin());
 
 			return "login_success";
 			
+			
 		}
-		this.addFieldError("login_error", "用户名账号或密码错误!");
-		return "login_fail";
+		
+		System.out.println("login success after =====");
+		
+		return ajaxReturnData.ajax("错误 : 用户名或密码有误!","text/html");
+		
 	}
 
 
@@ -88,6 +94,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 
 

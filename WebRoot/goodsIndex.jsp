@@ -25,9 +25,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
- 
+   <h1>这是购物网站的首页！</h1>
    
-    <h1>Welcome user : <s:property value="#session.name"/>  ~~ 水产品 !</h1> <br>
+    <h1>Welcome user : <span style="color:red"><s:property value="#session.name"/></span>  !</h1> <br>
     
   </body>
 </html>
