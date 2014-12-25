@@ -1,15 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>member center</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>精英食品</title>
 <link href="style/global.css" rel="stylesheet" type="text/css" />
 <link href="style/member.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<SCRIPT type="text/javascript" src="js/lrscroll.js"></SCRIPT>
 </head>
 
-<body>
+<body ng-controller="memberCtrl">
 <!--top ad-->
 <div id="top_ad" class="center" style="background-color:#EB1521">
 	<a href=""><img src="images/sample1.jpg" /></a>
@@ -72,16 +73,16 @@
         <div class="member_name">TSMER934984</div>
         <dl class="member_nav">
         	<dt>交易管理</dt>
-            <dd class="cur"><a href="">我的订单</a></dd>
-            <dd><a href="">商品评论</a></dd>
-            <dd><a href="">我的收藏</a></dd>
-            <dd><a href="">帐户余额</a></dd>
-            <dd><a href="">我的积分</a></dd>
-            <dd><a href="">我的优惠券</a></dd>
+            <dd ng-class="{'cur': pageID == 1}"><a href="#/order" ng-click="pageSelect(1)">我的订单</a></dd>
+            <dd ng-class="{'cur': pageID == 2}"><a href="#/criticism" ng-click="pageSelect(2)">商品评论</a></dd>
+            <dd ng-class="{'cur': pageID == 3}"><a href="#/collect" ng-click="pageSelect(3)">我的收藏</a></dd>
+            <dd ng-class="{'cur': pageID == 4}"><a href="#/change" ng-click="pageSelect(4)">帐户余额</a></dd>
+            <!--<dd><a href="">我的积分</a></dd>-->
+            <dd ng-class="{'cur': pageID == 5}"><a href="#/coupon" ng-click="pageSelect(5)">我的优惠券</a></dd>
             <dt>会员信息</dt>
-            <dd><a href="">帐户信息</a></dd>
-            <dd><a href="">修改密码</a></dd>
-            <dd><a href="">收货地址</a></dd>
+            <dd ng-class="{'cur': pageID == 6}"><a href="#/account" ng-click="pageSelect(6)">帐户信息</a></dd>
+            <dd ng-class="{'cur': pageID == 7}"><a href="#/changepwd" ng-click="pageSelect(7)">修改密码</a></dd>
+            <dd ng-class="{'cur': pageID == 8}"><a href="#/receivedaddress" ng-click="pageSelect(8)">收货地址</a></dd>
         </dl>
     </div>
     <!--/left-->
@@ -98,131 +99,8 @@
         </div>
         <div class="space20"></div>
         
-        <!--order list-->
-        <div class="member_title">
-        	<h5>我的订单</h5>
-            <ul class="member_t_lab">
-            	<li id="atb_1" class="main_labels"><a href="" onMouseover="hoverLi(1,3,'a');">待付款<span class="red">(3)</span></a></li>
-                <li id="atb_2"><a href="" onMouseover="hoverLi(2,3,'a');">已发货</a></li>
-                <li id="atb_3"><a href="" onMouseover="hoverLi(3,3,'a');">待评论<span class="red">(3)</span></a></li>
-            </ul>
-        </div>
-        <div class="space10"></div>
-        <div class="order_list">
-            <div id="atbc_1">
-            <table width="100%" border="0" cellspacing="0" cellpadding="5">
-  <tr>
-    <th colspan="6">&nbsp;&nbsp;2014-11-29&nbsp;&nbsp;&nbsp;&nbsp;订单号：877760253737436</th>
-  </tr>
-  <tr>
-    <td width="100" align="center" class="first"><div class="order_list_p"><a href=""><img src="images/sample2.jpg" /></a></div></td>
-    <td><a href="">深都优选长荡湖大闸蟹壹对 2.4-2.0两公蟹*2只1.8-1.5两母蟹*2只</a></td>
-    <td width="100" align="center"><span class="price"><span>¥</span>168.00</span></td>
-    <td width="100" align="center" class="border_r">1</td>
-    <td width="150" align="center" rowspan="2" class="border_r"><span class="price"><span>¥</span>237.00</span></td>
-    <td width="150" align="center" rowspan="2" class="border_r"><a href="">订单详情</a></td>
-  </tr>
-  <tr>
-    <td align="center" class="first"><div class="order_list_p"><a href=""><img src="images/sample2.jpg" /></a></div></td>
-    <td><a href="">深都优选长荡湖大闸蟹壹对 2.4-2.0两公蟹*2只1.8-1.5两母蟹*2只</a><br />
-    <span class="gray">保罗玛斯酒庄 乡野绅士干红葡萄酒 750ml*4</span></td>
-    <td align="center"><span class="price"><span>¥</span>168.00</span></td>
-    <td align="center" class="border_r">1</td>
-  </tr>
-</table>
-			<table width="100%" border="0" cellspacing="0" cellpadding="5">
-  <tr>
-    <th colspan="6">&nbsp;&nbsp;2014-11-29&nbsp;&nbsp;&nbsp;&nbsp;订单号：877760253737436</th>
-  </tr>
-  <tr>
-    <td width="100" align="center" class="first"><div class="order_list_p"><a href=""><img src="images/sample2.jpg" /></a></div></td>
-    <td><a href="">深都优选长荡湖大闸蟹壹对 2.4-2.0两公蟹*2只1.8-1.5两母蟹*2只</a></td>
-    <td width="100" align="center"><span class="price"><span>¥</span>168.00</span></td>
-    <td width="100" align="center" class="border_r">1</td>
-    <td width="150" align="center" class="border_r"><span class="price"><span>¥</span>237.00</span></td>
-    <td width="150" align="center" class="border_r"><a href="">订单详情</a></td>
-  </tr>
-</table>
-        	</div>
-            <div id="atbc_2" class="undis">
-            <table width="100%" border="0" cellspacing="0" cellpadding="5">
-  <tr>
-    <th colspan="6">&nbsp;&nbsp;2014-11-29&nbsp;&nbsp;&nbsp;&nbsp;订单号：877760253737436</th>
-  </tr>
-  <tr>
-    <td width="100" align="center" class="first"><div class="order_list_p"><a href=""><img src="images/sample2.jpg" /></a></div></td>
-    <td><a href="">深都优选长荡湖大闸蟹壹对 2.4-2.0两公蟹*2只1.8-1.5两母蟹*2只</a></td>
-    <td width="100" align="center"><span class="price"><span>¥</span>168.00</span></td>
-    <td width="100" align="center" class="border_r">1</td>
-    <td width="150" align="center" class="border_r"><span class="price"><span>¥</span>237.00</span></td>
-    <td width="150" align="center" class="border_r"><a href="">订单详情</a></td>
-  </tr>
-</table>
-            </div>
-            <div id="atbc_3" class="undis">
-            
-            </div>
-        </div>
-        <!--/order list-->
-        <div class="space20"></div>
+		<div ng-view></div>
         
-        <div class="member_title">
-        	<h5><span class="f16">猜您喜欢</span></h5>
-            <a href="javascript:void();" class="refresh">换一组</a>
-        </div>
-        <div class="space10"></div>
-        <div class="goods_list" id="botton-scroll">
-        	<ul class="clearfix">
-            	<li>
-                <div class="goods_p"><a href=""><img src="images/sample2.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample4.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample2.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample4.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample2.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample2.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample4.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-                <li>
-                <div class="goods_p"><a href=""><img src="images/sample2.jpg" /></a></div>
-                <div class="goods_t"><a href="">野生鳗鱼干 小鳗鲞 鳗鱼鲞海鲜干货咸鱼干特产干货500克2-3条真</a></div>
-                <div class="goods_price"><span>¥</span>35.00</div>
-                <div class="goods_btn"><a href=""><img src="images/buy1.png" /></a></div>
-                </li>
-            </ul>
-        </div>
         
     </div>
     <!--/right-->
@@ -246,7 +124,44 @@
 </div>
 
 </body>
-</html>
+
+<script src="../vendor/jquery/jquery-1.10.2.js"></script>
+<SCRIPT src="../js/lrscroll.js"></SCRIPT>
+<script src="../vendor/jquery/jquery.html5uploader.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/angular/angular.js"></script>
+<script src="../vendor/angular/angular-route.min.js"></script>
+
+<!-- core -->
+<SCRIPT src="../js/module.js"></SCRIPT>
+<SCRIPT src="../js/http-service.js"></SCRIPT>
+<!-- core -->
+
+<SCRIPT src="js/route.js"></SCRIPT>
+
+<!-- service -->
+<SCRIPT src="js/services/member-service.js"></SCRIPT>
+<SCRIPT src="js/services/account-service.js"></SCRIPT>
+<SCRIPT src="js/services/change-service.js"></SCRIPT>
+<SCRIPT src="js/services/changepwd-service.js"></SCRIPT>
+<SCRIPT src="js/services/collect-service.js"></SCRIPT>
+<SCRIPT src="js/services/coupon-service.js"></SCRIPT>
+<SCRIPT src="js/services/criticism-service.js"></SCRIPT>
+<SCRIPT src="js/services/order-service.js"></SCRIPT>
+<SCRIPT src="js/services/receivedaddress-service.js"></SCRIPT>
+<!-- service -->
+
+<!-- controller -->
+<SCRIPT src="js/controllers/member-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/account-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/change-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/changepwd-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/collect-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/coupon-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/criticism-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/order-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/receivedaddress-ctrl.js"></SCRIPT>
+<!-- controller -->
 
 <script>
 function g(tab){return document.getElementById(tab);} 
@@ -259,3 +174,4 @@ function hoverLi(n,nm,c){
 	g(c+'tb_'+n).className='main_labels'; 
 } 
 </script>
+</html>
