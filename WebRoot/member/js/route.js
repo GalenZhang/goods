@@ -22,15 +22,15 @@ APP.config(['$routeProvider', function ($routeProvider) {
     })
     .when('/account', {
         templateUrl: 'account.html',
-        controller: 'RouteDetailCtrl'
+        controller: 'accountCtrl'
     })
     .when('/changepwd', {
         templateUrl: 'changepwd.html',
-        controller: 'RouteDetailCtrl'
+        controller: 'changepwdCtrl'
     })
     .when('/receivedaddress', {
         templateUrl: 'receivedaddress.html',
-        controller: 'RouteDetailCtrl'
+        controller: 'receivedaddressCtrl'
     })
     .otherwise({
       redirectTo: '/order'
