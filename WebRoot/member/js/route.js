@@ -1,0 +1,38 @@
+APP.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+    .when('/order', {
+      templateUrl: 'order.html',
+      controller: 'orderCtrl'
+    })
+    .when('/criticism', {
+        templateUrl: 'criticism.html',
+        controller: 'criticismCtrl'
+    })
+    .when('/collect', {
+  	  templateUrl: 'collect.html',
+        controller: 'collectCtrl'
+    })
+    .when('/change', {//余额
+        templateUrl: 'change.html',
+        controller: 'changeCtrl'
+    })
+    .when('/coupon', {//优惠
+        templateUrl: 'coupon.html',
+        controller: 'couponCtrl'
+    })
+    .when('/account', {
+        templateUrl: 'account.html',
+        controller: 'RouteDetailCtrl'
+    })
+    .when('/changepwd', {
+        templateUrl: 'changepwd.html',
+        controller: 'RouteDetailCtrl'
+    })
+    .when('/receivedaddress', {
+        templateUrl: 'receivedaddress.html',
+        controller: 'RouteDetailCtrl'
+    })
+    .otherwise({
+      redirectTo: '/order'
+    });
+}]);
