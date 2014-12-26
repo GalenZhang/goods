@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!--<include file="struts-ajax.xml"></include>-->  
+	<!--     定义全局package -->
+	<package name="defaultpackage" extends="struts-default">
+		<interceptors>
+	   		<interceptor-stack name="defStack">
+	    		<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!--把自己的拦截器添加到定义的拦截器栈里面-->
+	    		<interceptor-ref name="errorlogin"></interceptor-ref>
+	   		</interceptor-stack>
+			<!--定义自己的拦截器-->
+	   		<interceptor name="errorlogin" class="com.struts.action.filter.LoginInterceptor" />
+	  	</interceptors>
+		<!--调用拦截器-->
+	  	<default-interceptor-ref name="defStack" />
+	  
+		<!--定义全局结果集-->
+		<global-results>
+	        <result name="login_out">
+	              /member/login.jsp
+	        </result>    
+		</global-results>
+	  
+	</package>
+</struts>

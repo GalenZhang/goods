@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sofans.dao.ILoginService;
 
-@ParentPackage("struts-default")  //表示继承的父包  
+@ParentPackage(value = "defaultpackage")  //表示继承的父包  
 @Namespace(value="/test") //表示当前Action所在命名空间  
 public class TestAction extends ActionSupport{
 
