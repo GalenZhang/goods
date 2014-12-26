@@ -32,8 +32,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private HttpServletRequest httpServletRequest = ServletActionContext.getRequest();
 	@Autowired
 	private ILoginService goodsLoginServiceImpl;
-	AjaxReturnData ajaxReturnData = new AjaxReturnData();
-	
 	
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
@@ -71,7 +69,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		
 		System.out.println("login success after =====");
 		
-		return ajaxReturnData.ajax("错误 : 用户名或密码有误!","text/html");
+		return AjaxReturnData.ajax("错误 : 用户名或密码有误!","text/html");
 		
 	}
 

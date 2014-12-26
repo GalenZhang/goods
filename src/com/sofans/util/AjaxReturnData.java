@@ -11,18 +11,18 @@ import org.apache.struts2.ServletActionContext;
  */
 public class AjaxReturnData {
 
-	public String ajax(String content, String type) {
+	public static String ajax(String content, String type) {
 		try {
-		HttpServletResponse response = ServletActionContext.getResponse();
-		response.setContentType(type + ";charset=UTF-8");
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		response.getWriter().write(content);
-		response.getWriter().flush();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType(type + ";charset=UTF-8");
+			response.setHeader("Pragma", "No-cache");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", 0);
+			response.getWriter().write(content);
+			response.getWriter().flush();
 		} catch (IOException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 		return null;
-		} 
+	}
 }
