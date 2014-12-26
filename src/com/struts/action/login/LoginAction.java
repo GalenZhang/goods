@@ -40,7 +40,7 @@ public class LoginAction extends ActionSupport{
 		try {
 			user = goodsLoginServiceImpl.goodsLogin(username, password);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		if (user != null) {
 			session.setAttribute("name", user.getUsername());
