@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sofans.constant.Constatnt;
+import com.sofans.constant.Constant;
 import com.sofans.dao.ILoginService;
 import com.sofans.entity.Result;
 import com.sofans.entity.UserSession;
@@ -50,7 +50,7 @@ public class LoginController {
 		}
 		
 		HttpSession session = request.getSession(true);
-		session.setAttribute(Constatnt.USER_OBJ, login);
+		session.setAttribute(Constant.USER_OBJ, login);
 		try {
 			res.sendRedirect(request.getContextPath()+"/admin/tables.html");
 		} catch (IOException e) {
@@ -62,7 +62,7 @@ public class LoginController {
 	@ResponseBody
 	public Result getmenu(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		UserSession userSession = (UserSession)session.getAttribute(Constatnt.USER_OBJ);
+		UserSession userSession = (UserSession)session.getAttribute(Constant.USER_OBJ);
 		if (userSession.getMenus() == null || userSession.getMenus().isEmpty())
 		{
 			return null;
@@ -73,7 +73,7 @@ public class LoginController {
 	@RequestMapping(value = "/login/loginout", method = RequestMethod.POST)
 	public void loginout(HttpServletRequest request, HttpServletResponse res) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(Constatnt.USER_OBJ);
+		session.removeAttribute(Constant.USER_OBJ);
 		session = null;
 		if (request.getAttribute("loginout") != null)
 		{

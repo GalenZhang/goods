@@ -1,4 +1,4 @@
-package com.struts.action.member;
+package com.goods.pub.action.member;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;

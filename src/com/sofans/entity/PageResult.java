@@ -2,13 +2,13 @@ package com.sofans.entity;
 
 import java.util.List;
 
-import com.sofans.constant.Constatnt;
+import com.sofans.constant.Constant;
 
 public class PageResult extends Result{
 	
 	private int totalSize;
 	
-	private int pagesize = Constatnt.PAGE_SIZE;
+	private int pagesize = Constant.PAGE_SIZE;
 	
 	private List<IBean> list;
 	

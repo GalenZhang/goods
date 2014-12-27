@@ -24,7 +24,7 @@
         org.springframework.web.util.Log4jConfigListener
       </listener-class>
   </listener>
-  <!-- following filter would not use 
+  <!-- following filter would not use -->
   <filter>
     <filter-name>SecurityFilter</filter-name>
     <filter-class>com.sofans.filter.SecurityFilter</filter-class>
@@ -33,7 +33,7 @@
     <filter-name>SecurityFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
--->  
+ 
   <!-- coding -->
   <filter>
 		<filter-name>encodingFilter</filter-name>

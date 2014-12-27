@@ -1,4 +1,4 @@
-package com.struts.action.util;
+package com.goods.util;
 
 public class ActionConstant {
 

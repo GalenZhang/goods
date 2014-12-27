@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sofans.constant.Constatnt;
+import com.sofans.constant.Constant;
 import com.sofans.entity.PageCondition;
 import com.sofans.entity.PageResult;
 import com.sofans.entity.Result;
@@ -39,7 +39,7 @@ public class SufansSysEmployeeController {
 		PageCondition pageCondition = new PageCondition();
 		pageCondition.setStart(Pagehelper.getInstance().getStart(pageIndex));
 		pageCondition.setConditions(null);
-		pageCondition.setLimit(Constatnt.PAGE_SIZE);
+		pageCondition.setLimit(Constant.PAGE_SIZE);
 		PageResult page = null;
 		try {
 			page = commonService.page(pageCondition, SofansSysEmployee.class);

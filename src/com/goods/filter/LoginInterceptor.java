@@ -1,11 +1,11 @@
-package com.struts.action.filter;
+package com.goods.filter;
 
 import java.util.Map;
 
+import com.goods.util.ActionConstant;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import com.struts.action.util.ActionConstant;
 
 public class LoginInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = -1246219947586303195L;

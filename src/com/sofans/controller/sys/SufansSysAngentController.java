@@ -21,20 +21,21 @@ import com.sofans.service.IServiceBase;
 
 @Controller
 public class SufansSysAngentController {
-	
-	private static final Log log = LogFactory.getLog(SufansSysAngentController.class);
-	
+
+	private static final Log log = LogFactory
+			.getLog(SufansSysAngentController.class);
+
 	@Autowired
 	IServiceBase commonService;
-	
+
 	/*
 	 * responsebody表示该方法的返回结果直接写入HTTP response body中一般在异步获取数据时使用
 	 */
-	
-	@RequestMapping(value="/admin/sys/agent/list",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/admin/sys/agent/list", method = RequestMethod.GET)
 	@ResponseBody
-	@Cacheable(value="DEFAULT_CACHE", key="\"agents\"")
-	public List<SofansSysAngent> list(){
+	@Cacheable(value = "DEFAULT_CACHE", key = "\"agents\"")
+	public List<SofansSysAngent> list() {
 		List<SofansSysAngent> list = null;
 		try {
 			list = commonService.findAll(SofansSysAngent.class);
@@ -43,45 +44,37 @@ public class SufansSysAngentController {
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
-	@RequestMapping(value="/admin/sys/agent/listById",method=RequestMethod.GET)
-	public @ResponseBody
-	List<SofansSysAngent> listById(String id){
+
+	@RequestMapping(value = "/admin/sys/agent/listById", method = RequestMethod.GET)
+	public @ResponseBody List<SofansSysAngent> listById(String id) {
 		int uid = Integer.valueOf(id);
 		int empid = 0;
 		List<SofansSysAngent> list = null;
 		try {
-			SofansSysUser sofansSysUser = commonService.findById(uid, SofansSysUser.class);
+			SofansSysUser sofansSysUser = commonService.findById(uid,
+					SofansSysUser.class);
 			empid = sofansSysUser.getEmp_id();
-			list = commonService.findByProperty("emp_id", empid, SofansSysAngent.class);
+			list = commonService.findByProperty("emp_id", empid,
+					SofansSysAngent.class);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		return list;
 	}
-	
-	
+
 	@RequestMapping(value = "/admin/sys/agent/save", method = RequestMethod.POST)
-	public @ResponseBody
-	@CacheEvict(value = "DEFAULT_CACHE", key="\"agents\"", beforeInvocation = true)  
-	Result save(@RequestBody SofansSysAngent model) {
+	public @ResponseBody @CacheEvict(value = "DEFAULT_CACHE", key = "\"agents\"", beforeInvocation = true) Result save(
+			@RequestBody SofansSysAngent model) {
 		if (model.getId() != null
 				&& !StringUtils.isEmpty(String.valueOf(model.getId()))
-				&& model.getId() > 0)
-		{
+				&& model.getId() > 0) {
 			try {
 				commonService.merge(model);
 			} catch (Exception e) {
 				log.error(e);
 				return new Result(false, "保存失败！");
 			}
-		}
-		else
-		{
+		} else {
 			int id;
 			try {
 				id = commonService.save(model);
@@ -93,10 +86,9 @@ public class SufansSysAngentController {
 		}
 		return new Result(true, "保存成功！", model);
 	}
-	
+
 	@RequestMapping(value = "/admin/sys/agent/remove", method = RequestMethod.GET)
-	public @ResponseBody
-	Result remove(String id, String v) {
+	public @ResponseBody Result remove(String id, String v) {
 		SofansSysAngent t = new SofansSysAngent();
 		t.setId(Integer.valueOf(id));
 		try {
@@ -105,12 +97,12 @@ public class SufansSysAngentController {
 			log.error(e);
 			return new Result(false, "删除失败！");
 		}
-		if(Integer.valueOf(v) > 1){
+		if (Integer.valueOf(v) > 1) {
 			return new Result(true, "删除成功！", listById(v));
-		}else{
+		} else {
 			return new Result(true, "删除成功！", list());
 		}
-		
+
 	}
 
 }

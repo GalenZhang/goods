@@ -1,4 +1,4 @@
-package com.struts.ui.tag;
+package com.goods.pub.tag;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.components.Component;
 import org.apache.struts2.views.jsp.ui.AbstractUITag;
 
+import com.goods.pub.tag.bean.MM;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.struts.ui.bean.MM;
 
 public class MMTag extends AbstractUITag {
 	

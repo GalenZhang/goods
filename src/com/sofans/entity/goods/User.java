@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.sofans.entity.IBean;
+import com.sofans.spring.conver.TimestampJsonDeserializer;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -183,6 +185,7 @@ public class User implements IBean {
 		return this.loadData;
 	}
 
+	@JsonDeserialize(using = TimestampJsonDeserializer.class)  
 	public void setLoadData(Timestamp loadData) {
 		this.loadData = loadData;
 	}

@@ -1,4 +1,4 @@
-package com.struts.action;
+package com.goods.pub.action;
 
 public class TestBean {
 

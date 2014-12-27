@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sofans.constant.Constatnt;
+import com.sofans.constant.Constant;
 
 public class SecurityFilter implements Filter {
 
@@ -28,32 +28,41 @@ public class SecurityFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
-		 HttpServletRequest req = (HttpServletRequest) arg0;  
+		 	HttpServletRequest req = (HttpServletRequest) arg0;  
 		    HttpServletResponse res = (HttpServletResponse) arg1;  
 		  
 		    String currentURL = req.getRequestURI();
 
-		    String targetURL = currentURL.substring(currentURL.lastIndexOf("/"));
+		   // String targetURL = currentURL.substring(currentURL.lastIndexOf("/"));
+		    
+		    if(currentURL.endsWith("/") || currentURL.indexOf("goods/index.html") >= 0)
+		    {
+		    	res.sendRedirect(req.getContextPath()+
+		    			"/public/index.html");
+		    	return;
+		    }
+		    
+		    if (currentURL.indexOf("public") > 0 || currentURL.indexOf("pub") > 0)
+		    {
+		    	arg2.doFilter(req, res);
+		    	return;
+		    }
 		    
 		    String suffix = currentURL.substring(currentURL.lastIndexOf(".") + 1);
-		    
-		    if (!"/login.html".equals(targetURL) && !suffixSet.contains(suffix) && !"/login.do".equals(targetURL))
+		    if (suffixSet.contains(suffix))
 		    {
-			    HttpSession session = req.getSession(); 
-			    System.out.println("/");
-			    if ("/".equals(targetURL))
-			    {
-			    	session.removeAttribute(Constatnt.USER_OBJ);
-			    	 res.sendRedirect(req.getContextPath()+"/login/login.html");  
-			    }
-			    else if (session.getAttribute(Constatnt.USER_OBJ) != null) {
-			        arg2.doFilter(req, res); 
-			        return;
-			    } else {
-			        res.sendRedirect(req.getContextPath()+"/login/login.html");  
-			    }  
+		    	arg2.doFilter(req, res);
+		    	return;
 		    }
+		    
+		    HttpSession session = req.getSession(); 
+		    if (session.getAttribute(Constant.USER_ID) == null) {
+		    	res.sendRedirect(req.getContextPath()+"/public/login.html");
+		    	 return;
+		    }
+		    
 		    arg2.doFilter(req, res); 
+		   
 	}
 
 	@Override
@@ -67,6 +76,7 @@ public class SecurityFilter implements Filter {
 		suffixSet.add("zip");
 		suffixSet.add("apk");
 		suffixSet.add("ico");
+		suffixSet.add("login.do");
 	}
 
 }

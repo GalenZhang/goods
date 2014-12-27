@@ -6,7 +6,7 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	};
 	
 	$scope.updateJpg = function(Verify){
-		$(Verify).attr("src","../login/securityCode.action?timestamp="+new Date().getTime());
+		$(Verify).attr("src","../pic/securityCode.action?timestamp="+new Date().getTime());
 	};
 	
 });

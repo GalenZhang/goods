@@ -41,5 +41,16 @@ APP.service('httpService', ['$http', '$q', function($http, $q){
 		});
 		return deferred.promise;
 	};
+	
+	service.jpost = function(scope, url, postData){
+		var deferred = $q.defer();
+		debugger;
+		$.post(url, postData 
+                ,function(response){
+					deferred.resolve(response);
+                }, 'json');
+		return deferred.promise;
+	};
+	
 	return service;
 }]);

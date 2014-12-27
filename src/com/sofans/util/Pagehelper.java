@@ -1,6 +1,6 @@
 package com.sofans.util;
 
-import com.sofans.constant.Constatnt;
+import com.sofans.constant.Constant;
 
 public class Pagehelper {
 
@@ -12,6 +12,6 @@ public class Pagehelper {
 	}
 	
 	public int getStart(int pageIndex){
-		return pageIndex * Constatnt.PAGE_SIZE;
+		return pageIndex * Constant.PAGE_SIZE;
 	}
 }

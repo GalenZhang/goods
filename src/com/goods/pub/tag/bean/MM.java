@@ -1,4 +1,4 @@
-package com.struts.ui.bean;
+package com.goods.pub.tag.bean;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
