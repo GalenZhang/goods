@@ -14,7 +14,7 @@
 	    		<interceptor-ref name="errorlogin"></interceptor-ref>
 	   		</interceptor-stack>
 			<!--定义自己的拦截器-->
-	   		<interceptor name="errorlogin" class="com.struts.action.filter.LoginInterceptor" />
+	   		<interceptor name="errorlogin" class="com.goods.filter.LoginInterceptor" />
 	  	</interceptors>
 		<!--调用拦截器-->
 	  	<default-interceptor-ref name="defStack" />

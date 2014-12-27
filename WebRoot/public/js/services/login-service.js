@@ -15,9 +15,8 @@ APP.service('loginService', ['httpService', function(httpService){
                     });
             */
 
-			httpService.post(scope,'../g/login.do', user).then(function(data) {
-				alert(data);
-				//scope.$broadcast('saveAngent', data);
+			httpService.post(scope, '../pub/member/login.do', user).then(function(data) {
+				scope.$broadcast('login', data);
 			},function(data) {
 				alert('error');
 			});
