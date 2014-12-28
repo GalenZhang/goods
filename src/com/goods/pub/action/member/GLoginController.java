@@ -37,12 +37,12 @@ public class GLoginController {
 			return new Result(false, "登陆的败!");
 		}
 		
-		return new Result(true, "登陆成功！");
+		return new Result(true, "登陆成功！", user.getIs_admin());
 	}
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
-	public String getUser(HttpServletRequest request){
-		return String.valueOf(request.getSession().getAttribute(Constant.USER_ID));
+	public @ResponseBody Result getUser(HttpServletRequest request){
+		return new Result(true, String.valueOf(request.getSession().getAttribute(Constant.USER_ID)));
 	}
 	
 	@RequestMapping(value = "/pub/member/loginout", method = RequestMethod.GET)

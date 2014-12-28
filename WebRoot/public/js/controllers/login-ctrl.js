@@ -5,7 +5,14 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	$scope.$on("login", function(event, data){
 		if(data.result)
 		{
-			window.location.href = "../member/member.html";
+			if (data.obj == 1)
+			{
+				window.location.href = "../member/admin.html";
+			}
+			else
+			{
+				window.location.href = "../member/member.html";
+			}
 		}
 		else
 		{
@@ -28,6 +35,37 @@ APP.controller("loginCtrl", function($scope, loginService) {
 		loginService.login($scope, $scope.user);
 		
 	};
+	
+	$scope.$on("loginout", function(event, data){
+		if(data.result)
+		{
+			//update the value on the top of page. login out -> login
+		}
+		else
+		{
+			alert('退出失败！');
+			return;
+		}
+	});
+	
+	$scope.loginout = function(){
+		loginService.login($scope);
+	};
+	
+	$scope.$on("getUser", function(event, data){
+		if(data.result)
+		{
+			//update the value on the top of page. login out -> login
+		}
+		else
+		{
+			return;
+		}
+	});
+	
+	$scope.getUser = function(){
+		loginService.getUser($scope);
+	}
 	
 	$scope.updateJpg = function(Verify){
 		$(Verify).attr("src","../pic/securityCode.action?timestamp="+new Date().getTime());

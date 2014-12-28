@@ -11,10 +11,10 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.goods.util.ActionConstant;
-import com.goods.util.SecurityCode;
-import com.goods.util.SecurityImage;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sofans.constant.Constant;
+import com.sofans.util.SecurityCode;
+import com.sofans.util.SecurityImage;
 
 /*
  *   @Action(value="employeeJson",
@@ -47,7 +47,7 @@ public class SecurityPicAction extends ActionSupport {
 		imageStream = SecurityImage.getImageAsInputStream(securityCode);
 		// 放入session中
 		session.setAttribute("SESSION_SECURITY_CODE", securityCode);
-		return ActionConstant.SUCCESS;
+		return Constant.SUCCESS;
 	}
 
 	public ByteArrayInputStream getImageStream() {
