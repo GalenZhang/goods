@@ -26,6 +26,7 @@ APP.controller("loginCtrl", function($scope, loginService) {
 			return;
 		}
 		loginService.login($scope, $scope.user);
+		
 	};
 	
 	$scope.updateJpg = function(Verify){
