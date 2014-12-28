@@ -120,13 +120,9 @@ public class MD5Util {
 	
 	public static void main(String[] args)
 	{
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("superadmin", "superadmin.123") +"' where name = 'superadmin';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("LK000009", "48087402") +"' where name = 'LK000009';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("LK000049", "53410184") +"' where name = 'LK000049';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("ss001659", "32293555") +"' where name = 'ss001659';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("LK000002", "68587131") +"' where name = 'LK000002';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("ss001632", "83531420") +"' where name = 'ss001632';");
-		System.out.println("update sofans_sys_user set password='"+ MD5Util.salt("ss001756", "02412840") +"' where name = 'ss001756';");
+		
+		System.out.println(MD5Util.salt("admin", "goods.123"));
+		
 	}
 	
 }

@@ -28,6 +28,7 @@ public class GoodsLoginServiceImpl extends CommonService implements ILoginServic
 	
 	@Override
 	public User goodsLogin(String userName, String password) throws Exception {
+		
 		List<IBean> list = (List<IBean>)commonDAO.findByProperty("username", userName, User.class);
 
 		if(CollectionUtils.isEmpty(list))
@@ -35,10 +36,10 @@ public class GoodsLoginServiceImpl extends CommonService implements ILoginServic
 			return null;
 		}
 		User user = (User)list.get(0);
-		/*if (!MD5Util.verify(user.getPassword(), userName, password))
+		if (!MD5Util.verify(user.getPassword(), userName, password))
 		{
 			return null;
-		}*/
+		}
 		
 		return user;
 	}

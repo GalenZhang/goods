@@ -1,11 +1,11 @@
 APP.controller("loginCtrl", function($scope, loginService) {
 	
-	$scope.user = {username: '', password : ''};
+	var user = $scope.user = {username: '', password : ''};
 	
 	$scope.$on("login", function(event, data){
 		if(data.result)
 		{
-			window.location.href = "index.html";
+			window.location.href = "../member/member.html";
 		}
 		else
 		{
@@ -15,6 +15,16 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	});
 	
 	$scope.login = function(){
+		if (angular.isUndefined(user.username) || !user.username)
+		{
+			alert('请输入用户名!');
+			return;
+		}
+		if (angular.isUndefined(user.password) || !user.password)
+		{
+			alert('请输入密码!');
+			return;
+		}
 		loginService.login($scope, $scope.user);
 	};
 	

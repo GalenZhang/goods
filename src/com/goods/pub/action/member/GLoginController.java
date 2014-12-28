@@ -1,7 +1,5 @@
 package com.goods.pub.action.member;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,29 +29,26 @@ public class GLoginController {
 	public @ResponseBody Result login(HttpServletRequest request, HttpServletResponse res, @RequestBody User u) {
 		User user = null;
 		try {
-			//user = goodsLoginServiceImpl.goodsLogin(u.getUsername(), u.getPassword());
-			request.getSession().setAttribute(Constant.USER_ID, 11);
-			request.getSession().setAttribute(Constant.USER_ROLE, 1);
+			user = goodsLoginServiceImpl.goodsLogin(u.getUsername(), u.getPassword());
+			request.getSession().setAttribute(Constant.USER_ID, user.getUsername());
+			request.getSession().setAttribute(Constant.USER_ROLE, user.getIs_admin());
 		} catch (Exception e) {
 			log.error(e);
+			return new Result(false, "登陆的败!");
 		}
 		
-		//login fault
-		if (u == null)
-		{
-			try {
-				res.sendRedirect(request.getContextPath()+"/public/login.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//login successful
-		/*try {
-			res.sendRedirect(request.getContextPath()+"/public/index.html");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		return new Result(true, "登陆成功！");
 	}
+	
+	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
+	public String getUser(HttpServletRequest request){
+		return String.valueOf(request.getSession().getAttribute(Constant.USER_ID));
+	}
+	
+	@RequestMapping(value = "/pub/member/loginout", method = RequestMethod.GET)
+	public void loginOut(HttpServletRequest request){
+		request.getSession().removeAttribute(Constant.USER_ID);
+		request.getSession().removeAttribute(Constant.USER_ROLE);
+	}
+	
 }
