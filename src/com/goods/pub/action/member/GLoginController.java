@@ -41,8 +41,8 @@ public class GLoginController {
 	}
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
-	public String getUser(HttpServletRequest request){
-		return String.valueOf(request.getSession().getAttribute(Constant.USER_ID));
+	public @ResponseBody Result getUser(HttpServletRequest request){
+		return new Result(true, String.valueOf(request.getSession().getAttribute(Constant.USER_ID)));
 	}
 	
 	@RequestMapping(value = "/pub/member/loginout", method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-package com.goods.util;
+package com.sofans.util;
 
 import java.util.Arrays;
 

@@ -2,10 +2,10 @@ package com.goods.filter;
 
 import java.util.Map;
 
-import com.goods.util.ActionConstant;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.sofans.constant.Constant;
 
 public class LoginInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = -1246219947586303195L;
@@ -27,7 +27,7 @@ public class LoginInterceptor extends AbstractInterceptor {
         //向HttpServletRequest中添加属性，即request.setAttribute(msg,...)
         actionContext.put("msg", "还没有登陆!");
         //返回LOGIN逻辑视图  
-        return ActionConstant.LOGIN_OUT;
+        return Constant.LOGIN_OUT;
 	}
 
 }
