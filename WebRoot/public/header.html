@@ -8,4 +8,78 @@
 <title>精英食品</title>
 <link href="../public/style/global.css" rel="stylesheet" type="text/css" />
 <link href="../public/style/member.css" rel="stylesheet" type="text/css" />
+<script src="../vendor/jquery/jquery-1.10.2.js"></script>
+<script src="../vendor/jquery/jquery.html5uploader.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/angular/angular.js"></script>
+<script src="../vendor/angular/angular-route.min.js"></script>
+
+<!-- core -->
+<SCRIPT src="../js/module.js"></SCRIPT>
+<SCRIPT src="../js/http-service.js"></SCRIPT>
+<!-- core -->
+
+<!-- service -->
+<SCRIPT src="/goods/public/js/services/login-service.js"></SCRIPT>
+<!-- service -->
+
+<!-- controller -->
+<SCRIPT src="/goods/public/js/controllers/login-ctrl.js"></SCRIPT>
+<!-- controller -->
+
 </head>
+<body>
+<!--top ad-->
+<div id="top_ad" class="center" style="background-color:#EB1521">
+	<a href=""><img src="../public/images/sample1.jpg" /></a>
+</div>
+<!--/top ad-->
+
+
+<div id="bread">
+	<div class="row" ng-controller="loginCtrl">
+    	<div class="left"><a href="" class="addfavor">收藏</a><a href="" class="sina">关注</a></div>
+        <div class="right">
+        你好，{{username}} 欢迎来到精英食品！
+        [<a href="javascript:void(0);" ng-click="changeState()">{{loginWord}}</a>]
+        <span ng-hide="isLogin">[<a href="/goods/public/register.html">注册</a>]</span>
+        <a class="line cart">购物车0件</a><a class="line order">我的订单</a>
+        </div>
+    </div>
+</div>
+<!--head-->
+<div class="row clearfix">
+    <div id="logo"><a href="index.html"><img src="../public/images/logo.jpg" /></a></div>
+    <div id="search">
+    	<div class="search_box"><input type="text" name="keyword" value="" /></div>
+        <div class="search_btn"><input type="submit" name="search" value="搜索" /></div>
+        <div class="search_keywords">
+        	<a href="" class="key_btn">热门搜索</a>
+            <ul>
+            <li><a href="">阿克苏苹果</a></li>
+            <li><a href="">葡萄酒</a></li>
+            <li><a href="">蜂蜜</a></li>
+            <li><a href="">奶粉</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="head_right"><img src="../public/images/img1.jpg" /></div>
+</div>
+<!--/head-->
+
+<div id="nav">
+	<div class="row">
+    	<div class="nav_category">
+        	<div class="nav_cate_all"><a href="">全部商品分类</a></div>
+        </div>
+        <ul class="nav">
+        	<li class="cur"><a href="">首 页</a></li>
+            <li><a href="">海 鲜</a></li>
+            <li><a href="">特 产</a></li>
+            <li><a href="">红 酒</a></li>
+            <li><a href="">团 购</a></li>
+            <li><a href="">品牌街</a></li>
+            <li><a href="">海洋食品文化中心</a></li>
+        </ul>
+    </div>
+</div>

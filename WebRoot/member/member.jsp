@@ -1,72 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="APP">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>精英食品</title>
-<link href="../public/style/global.css" rel="stylesheet" type="text/css" />
-<link href="../public/style/member.css" rel="stylesheet" type="text/css" />
-</head>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 
-<body ng-controller="memberCtrl">
-<!--top ad-->
-<div id="top_ad" class="center" style="background-color:#EB1521">
-	<a href=""><img src="../public/images/sample1.jpg" /></a>
-</div>
-<!--/top ad-->
-
-
-<div id="bread">
-	<div class="row">
-    	<div class="left"><a href="" class="addfavor">收藏</a><a href="" class="sina">关注</a></div>
-        <div class="right">
-        你好， 欢迎来到精英食品！[<a href="">登录</a>][<a href="">注册</a>]
-        <a class="line cart">购物车0件</a><a class="line order">我的订单</a>
-        </div>
-    </div>
-</div>
-<!--head-->
-<div class="row clearfix">
-    <div id="logo"><a href="index.html"><img src="../public/images/logo.jpg" /></a></div>
-    <div id="search">
-    	<div class="search_box"><input type="text" name="keyword" value="" /></div>
-        <div class="search_btn"><input type="submit" name="search" value="搜索" /></div>
-        <div class="search_keywords">
-        	<a href="" class="key_btn">热门搜索</a>
-            <ul>
-            <li><a href="">阿克苏苹果</a></li>
-            <li><a href="">葡萄酒</a></li>
-            <li><a href="">蜂蜜</a></li>
-            <li><a href="">奶粉</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="head_right"><img src="../public/images/img1.jpg" /></div>
-</div>
-<!--/head-->
-
-<div id="nav">
-	<div class="row">
-    	<div class="nav_category">
-        	<div class="nav_cate_all"><a href="">全部商品分类</a></div>
-        </div>
-        <ul class="nav">
-        	<li class="cur"><a href="">首 页</a></li>
-            <li><a href="">海 鲜</a></li>
-            <li><a href="">特 产</a></li>
-            <li><a href="">红 酒</a></li>
-            <li><a href="">团 购</a></li>
-            <li><a href="">品牌街</a></li>
-            <li><a href="">海洋食品文化中心</a></li>
-        </ul>
-    </div>
-</div>
+<s:include value="../public/header.html" />
 
 <div class="space20"></div>
 <!--main-->
-<div class="row clearfix">
+<div class="row clearfix"  ng-controller="memberCtrl">
     <!--left-->
     <div class="member_left">
     	<div class="member_pic"><img src="../public/images/sample3.jpg" /></div>
@@ -84,8 +23,6 @@
             <dd ng-class="{'cur': pageID == 7}"><a href="#/changepwd" ng-click="pageSelect(7)">修改密码</a></dd>
             <dd ng-class="{'cur': pageID == 8}"><a href="#/receivedaddress" ng-click="pageSelect(8)">收货地址</a></dd>
             
-            <dt>管理员</dt>
-            <dd ng-class="{'cur': pageID == 9}"><a href="#/account" ng-click="pageSelect(9)">管理产品</a></dd>
         </dl>
     </div>
     <!--/left-->
@@ -117,29 +54,7 @@
     </div>
 </div>
 
-<div id="guarantee"><img src="../public/images/guarantee.gif" /></div>
-
-<div id="footer" class="member_row center">
-    <a href="" title="">关于精英食品</a> |　<a href="" title="">客服中心</a> | <a href="" title="">联系我们</a>　| <a href="" title="">友情链接</a><br />
-    &copy; 2014 www.infoyu.com 精英食品有限公司<br />
-    增值电信经营许可证号:粤B2-20110495  网站备案号:粤B2-20030128号<br />    
-    <img src="../public/images/unionpay.gif" /><img src="../public/images/govIcon.gif" /><img src="../public/images/xfz.gif" /><img src="../public/images/VieID_140_50.png" />
-</div>
-
-</body>
-
-<script src="../vendor/jquery/jquery-1.10.2.js"></script>
-<script src="../vendor/jquery/jquery.html5uploader.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../vendor/angular/angular.js"></script>
-<script src="../vendor/angular/angular-route.min.js"></script>
-
-<!-- core -->
-<SCRIPT src="../js/module.js"></SCRIPT>
-<SCRIPT src="../js/http-service.js"></SCRIPT>
-<!-- core -->
-
-<SCRIPT src="js/route.js"></SCRIPT>
+<s:include value="../public/member-footer.html" /><br />
 
 <!-- service -->
 <SCRIPT src="js/services/member-service.js"></SCRIPT>

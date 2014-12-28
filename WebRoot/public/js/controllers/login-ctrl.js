@@ -2,6 +2,19 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	
 	var user = $scope.user = {username: '', password : ''};
 	
+	$scope.changeState = function(){
+		if ($scope.isLogin)
+		{
+			loginService.loginout($scope);
+		}
+		else
+		{
+			window.location.href = "login.html";
+		}
+	};
+	
+	
+	
 	$scope.$on("login", function(event, data){
 		if(data.result)
 		{
@@ -11,7 +24,7 @@ APP.controller("loginCtrl", function($scope, loginService) {
 			}
 			else
 			{
-				window.location.href = "../member/member.html";
+				window.location.href = "../member/member.jsp";
 			}
 		}
 		else
@@ -39,23 +52,37 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	$scope.$on("loginout", function(event, data){
 		if(data.result)
 		{
-			//update the value on the top of page. login out -> login
+			$scope.username = '';
+			$scope.isLogin = false;
+			$scope.loginWord = ' 登录';
+			window.location.href = "/goods/public/index.html";
 		}
 		else
 		{
 			alert('退出失败！');
-			return;
 		}
 	});
 	
 	$scope.loginout = function(){
-		loginService.login($scope);
+		loginService.loginout($scope);
 	};
 	
 	$scope.$on("getUser", function(event, data){
-		if(data.result)
+		if(data)
 		{
 			//update the value on the top of page. login out -> login
+			if (data.result)
+			{
+				$scope.username = data.obj;
+				$scope.isLogin = true;
+				$scope.loginWord = ' 退出';
+			}
+			else
+			{
+				$scope.username = '';
+				$scope.isLogin = false;
+				$scope.loginWord = ' 登录';
+			}
 		}
 		else
 		{
@@ -66,6 +93,11 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	$scope.getUser = function(){
 		loginService.getUser($scope);
 	}
+	
+	
+	$(function(){
+		loginService.getUser($scope);
+	});
 	
 	$scope.updateJpg = function(Verify){
 		$(Verify).attr("src","../pic/securityCode.action?timestamp="+new Date().getTime());

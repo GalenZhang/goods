@@ -16,7 +16,7 @@ APP.service('loginService', ['httpService', function(httpService){
 				scope.$broadcast('loginout', data);
 			});
 		},
-		getUser: function(){
+		getUser: function(scope){
 			httpService.get(scope, '..//pub/member/getuser.do').then(function(data){
 				scope.$broadcast('getUser', data);
 			});

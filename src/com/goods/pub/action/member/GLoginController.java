@@ -42,13 +42,20 @@ public class GLoginController {
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
 	public @ResponseBody Result getUser(HttpServletRequest request){
-		return new Result(true, String.valueOf(request.getSession().getAttribute(Constant.USER_ID)));
+		String username = String.valueOf(request.getSession().getAttribute(Constant.USER_ID));
+		if (org.apache.commons.lang.StringUtils.isEmpty(username))
+		{
+			username = "";
+			return new Result(false, "读取用户数据成功！", username);
+		}
+		return new Result(true, "读取用户数据成功！", username);
 	}
 	
 	@RequestMapping(value = "/pub/member/loginout", method = RequestMethod.GET)
-	public void loginOut(HttpServletRequest request){
+	public @ResponseBody Result loginOut(HttpServletRequest request){
 		request.getSession().removeAttribute(Constant.USER_ID);
 		request.getSession().removeAttribute(Constant.USER_ROLE);
+		return new Result(true, "成功退出！");
 	}
 	
 }
