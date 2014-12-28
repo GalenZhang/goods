@@ -5,7 +5,14 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	$scope.$on("login", function(event, data){
 		if(data.result)
 		{
-			window.location.href = "../member/member.html";
+			if (data.obj == 1)
+			{
+				window.location.href = "../member/admin.html";
+			}
+			else
+			{
+				window.location.href = "../member/member.html";
+			}
 		}
 		else
 		{

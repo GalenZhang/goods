@@ -72,35 +72,14 @@
     	<div class="member_pic"><img src="../public/images/sample3.jpg" /></div>
         <div class="member_name">TSMER934984</div>
         <dl class="member_nav">
-        	<dt>交易管理</dt>
-            <dd ng-class="{'cur': pageID == 1}"><a href="#/order" ng-click="pageSelect(1)">我的订单</a></dd>
-            <dd ng-class="{'cur': pageID == 2}"><a href="#/criticism" ng-click="pageSelect(2)">商品评论</a></dd>
-            <dd ng-class="{'cur': pageID == 3}"><a href="#/collect" ng-click="pageSelect(3)">我的收藏</a></dd>
-            <dd ng-class="{'cur': pageID == 4}"><a href="#/change" ng-click="pageSelect(4)">帐户余额</a></dd>
-            <!--<dd><a href="">我的积分</a></dd>-->
-            <dd ng-class="{'cur': pageID == 5}"><a href="#/coupon" ng-click="pageSelect(5)">我的优惠券</a></dd>
-            <dt>会员信息</dt>
-            <dd ng-class="{'cur': pageID == 6}"><a href="#/account" ng-click="pageSelect(6)">帐户信息</a></dd>
-            <dd ng-class="{'cur': pageID == 7}"><a href="#/changepwd" ng-click="pageSelect(7)">修改密码</a></dd>
-            <dd ng-class="{'cur': pageID == 8}"><a href="#/receivedaddress" ng-click="pageSelect(8)">收货地址</a></dd>
-            
             <dt>管理员</dt>
-            <dd ng-class="{'cur': pageID == 9}"><a href="#/account" ng-click="pageSelect(9)">管理产品</a></dd>
+            <dd ng-class="{'cur': pageID == 1}"><a href="#/account" ng-click="pageSelect(1)">管理产品</a></dd>
         </dl>
     </div>
     <!--/left-->
     <!--right-->
     <div class="member_right">
-    	<div class="member_info clearfix">
-            <span class="account_alert">优惠券<br /><span><span class="f12">¥</span>5.00</span></span>
-            <span class="account_alert">余额<br /><span><span class="f12">¥</span>0.0</span></span>
-            <span class="account_alert">积分<br /><span>10000</span></span>
-            <span class="member_ico"></span>
-            <span class="member_grade">TSMER934984  (rae_dong@163.com)<br />
-            普通会员  目前安全级别 低 <span class="safe_l"></span><!--中级/高级<span class="safe_m"></span><span class="safe_h"></span>-->
-            </span>
-        </div>
-        <div class="space20"></div>
+    	
         
 		<div ng-view></div>
         

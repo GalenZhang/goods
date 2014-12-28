@@ -32,6 +32,10 @@ APP.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'receivedaddress.html',
         controller: 'receivedaddressCtrl'
     })
+    .when('/manageproduce', {
+        templateUrl: 'manage_product.html',
+        controller: 'manageProductCtrl'
+    })
     .otherwise({
       redirectTo: '/order'
     });

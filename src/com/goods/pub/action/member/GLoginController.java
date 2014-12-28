@@ -37,7 +37,7 @@ public class GLoginController {
 			return new Result(false, "登陆的败!");
 		}
 		
-		return new Result(true, "登陆成功！");
+		return new Result(true, "登陆成功！", user.getIs_admin());
 	}
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
