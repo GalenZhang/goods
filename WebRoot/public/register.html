@@ -38,12 +38,12 @@
                 </div>
                 <div class="line" id="l_capcha">
                 <label for="capcha" class="f14 dis">验证码</label>
-                <img src="../pub/securityCode" id="Verify" ng-click="updateJpg($event.target)" style="cursor:hand;" alt="看不清，换一张"/>
-                <span class="form_alert">*</span>
+                <input type="text" name="checkNumber" id="checkNumber" value="" class="reg_txt"/>
+                <span class="form_alert" id="check_msg">*</span>
                 </div>
                 <div class="line" id="l_capcha_p">
-                <label class="f14 dis">换一张</label>
-                <div><img src="images/capcha.gif" /></div>
+                <label class="f14 dis" style="cursor:pointer;" id="changePic">换一张</label>
+                <div><img src="../pub/securityCode" id="Verify" ng-click="updateJpg($event.target)" style="cursor:pointer;" alt="看不清，换一张"/></div>
                 </div>
                 
                 <div class="clear"></div>

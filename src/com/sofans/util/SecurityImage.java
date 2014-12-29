@@ -36,7 +36,7 @@ public class SecurityImage {
         //图片宽度
         int width = codeLength * fWidth + 6 ;
         //图片高度
-        int height = fSize * 2 + 1;
+        int height = fSize * 2 -4;
         
         //图片
         BufferedImage image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

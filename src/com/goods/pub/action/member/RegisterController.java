@@ -3,6 +3,10 @@ package com.goods.pub.action.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +37,6 @@ public class RegisterController extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("id=" + id);
 		if (id > 0)
 			return "恭喜您注册成功！";
 		else
@@ -51,6 +54,15 @@ public class RegisterController extends ActionSupport {
 		}
 		return list;
 	}
+	
+	@RequestMapping(value= "/pub/member/returnNumber.do")
+	public @ResponseBody String returnCheckNumber(String n){
+		
+		HttpServletRequest re = ServletActionContext.getRequest();
+		HttpSession session = re.getSession();
+		String number = (String) session.getAttribute("SESSION_SECURITY_CODE");
+		return number;
+	}
 
 	public IServiceBase getGoodsSysUserServiceImpl() {
 		return goodsSysUserServiceImpl;
@@ -59,5 +71,7 @@ public class RegisterController extends ActionSupport {
 	public void setGoodsSysUserServiceImpl(IServiceBase goodsSysUserServiceImpl) {
 		this.goodsSysUserServiceImpl = goodsSysUserServiceImpl;
 	}
+	
+
 
 }
