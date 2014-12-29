@@ -24,7 +24,7 @@ import com.sofans.util.SecurityImage;
  */
 
 @ParentPackage(value = "json-default")
-@Namespace(value = "/pic")
+@Namespace(value = "/pub")
 public class SecurityPicAction extends ActionSupport {
 	private static final long serialVersionUID = 3625158696331593140L;
 

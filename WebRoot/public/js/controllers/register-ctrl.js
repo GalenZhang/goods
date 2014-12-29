@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 APP.controller("registerCtrl", function($scope, $http, registerService) {
 
 	var user = $scope.user = {
@@ -74,7 +73,7 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 	};
 
 });
-=======
+
 APP.controller("registerCtrl", function($scope, $http, registerService) {
 
 	var user = $scope.user = {
@@ -146,5 +145,7 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 
 	};
 
+	$scope.updateJpg = function(Verify){
+		$(Verify).attr("src","../pub/securityCode?timestamp="+new Date().getTime());
+	};
 });
->>>>>>> 1cb62d82052ebea8f040bb23d9e1e35f4ef68d8a

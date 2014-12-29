@@ -92,15 +92,13 @@ APP.controller("loginCtrl", function($scope, loginService) {
 	
 	$scope.getUser = function(){
 		loginService.getUser($scope);
-	}
+	};
 	
 	
 	$(function(){
 		loginService.getUser($scope);
 	});
 	
-	$scope.updateJpg = function(Verify){
-		$(Verify).attr("src","../pic/securityCode.action?timestamp="+new Date().getTime());
-	};
+
 	
 });

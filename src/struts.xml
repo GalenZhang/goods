@@ -22,7 +22,7 @@
 		<!--定义全局结果集-->
 		<global-results>
 	        <result name="login_out">
-	              /member/login.jsp
+	              /public/login.jsp
 	        </result>    
 		</global-results>
 	  

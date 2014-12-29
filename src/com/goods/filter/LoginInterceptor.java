@@ -1,17 +1,17 @@
 package com.goods.filter;
 
-import java.util.Map;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import com.sofans.constant.Constant;
 
 public class LoginInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = -1246219947586303195L;
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
+		
+		
+		 return arg0.invoke();
+		/*
 		// 获取ActionContext  
         ActionContext actionContext = arg0.getInvocationContext();
         // 获取sessionMap  
@@ -27,7 +27,7 @@ public class LoginInterceptor extends AbstractInterceptor {
         //向HttpServletRequest中添加属性，即request.setAttribute(msg,...)
         actionContext.put("msg", "还没有登陆!");
         //返回LOGIN逻辑视图  
-        return Constant.LOGIN_OUT;
+        return Constant.LOGIN_OUT;*/
 	}
 
 }
