@@ -1,11 +1,10 @@
-
 APP.controller("registerCtrl", function($scope, $http, registerService) {
 
 	var user = $scope.user = {
 		username : '',
 		password : ''
 	};
-	var number='';
+	var number = '';
 
 	$scope.$on("register", function(event, data) {
 		user.username = "";
@@ -13,13 +12,6 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 		$("#repassword").val("");
 		$("#checkNumber").val("");
 		alert(data);
-	});
-	
-	registerService.returnNumber($scope);
-	$scope.$on("returnNumber", function(event, data) {
-		number = data;
-		alert(number);
-
 	});
 
 	var ischeck = false;
@@ -30,7 +22,7 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 			if (data.length > 0) {
 				ischeck = true;
 				$("#name_msg").html("错误 : 该帐号名已被注册!!");
-			}else{
+			} else {
 				ischeck = false;
 				$("#name_msg").html("");
 			}
@@ -38,16 +30,16 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 	});
 
 	$scope.register = function() {
+		changeP();
 
 		$("#name_msg").html("");
 		$("#pwd_msg").html("");
 		$("#check_msg").html("");
 
 		var repassword = $("#repassword").val();
-		var vNumber = $("#checkNumber").val();
-		vNumber = '"'+vNumber+'"';
+
 		var remember = $("#remember").is(':checked');
-		
+
 		if (ischeck) {
 			return;
 		}
@@ -62,7 +54,6 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 			$("#name_msg").html("错误 : 账号应该为8-20位的数字或字母!");
 			return;
 		}
-		
 
 		if (user.password == '') {
 			$("#pwd_msg").html("提示 : 请输入密码!");
@@ -73,40 +64,50 @@ APP.controller("registerCtrl", function($scope, $http, registerService) {
 			$("#pwd_msg").html("提示 : 密码不一致!");
 			return;
 		}
-		//alert(vNumber+","+number)
-		//alert(vNumber==number)
-		if(!(vNumber == number)){
+
+		var vNumber = $("#checkNumber").val();
+		if (!(vNumber == number)) {
 			$("#check_msg").html("提示 : 验证码有误!");
 			return;
 		}
-		
 
 		if (!remember) {
 			return;
 		}
 		registerService.register($scope, $scope.user);
+		$(Verify).attr("src",
+				"../pub/securityCode?timestamp=" + new Date().getTime());
 
 	};
-	
-	
 
+	$("#Verify").click(
+			function() {
+				$("#Verify")
+						.attr(
+								"src",
+								"../pub/securityCode?timestamp="
+										+ new Date().getTime());
+			});
 
-	$scope.updateJpg = function(Verify){
-		$(Verify).attr("src","../pub/securityCode?timestamp="+new Date().getTime());
-		registerService.returnNumber($scope);
-		$scope.$on("returnNumber", function(event, data) {
-			number = data;
-			alert(number);
+	$("#changePic").click(
+			function() {
+				$("#Verify")
+						.attr(
+								"src",
+								"../pub/securityCode?timestamp="
+										+ new Date().getTime());
+			});
+
+	function changeP() {
+		$.ajax({
+			async : false,
+			type : "get",
+			dataType : "html",
+			url : "../pub/member/returnNumber.do",
+			success : function(data) {
+				number = data;
+			}
 		});
-	};
-	
-	$("#changePic").click(function(){
-		$(Verify).attr("src","../pub/securityCode?timestamp="+new Date().getTime());
-		registerService.returnNumber($scope);
-		$scope.$on("returnNumber", function(event, data) {
-			number = data;
-			alert(number);
-		});
-	});
-	
+	}
+
 });
