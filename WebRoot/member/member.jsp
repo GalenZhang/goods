@@ -80,6 +80,7 @@
 <SCRIPT src="js/controllers/criticism-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/order-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/receivedaddress-ctrl.js"></SCRIPT>
+<script src="js/controllers/order-route-ctrl.js"></script>
 <!-- controller -->
 
 <script>

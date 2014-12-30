@@ -13,7 +13,10 @@ APP.controller("loginCtrl", function($scope, loginService) {
 		}
 	};
 	
-	
+	$scope.showRegister = function()
+	{
+		
+	}
 	
 	$scope.$on("login", function(event, data){
 		if(data.result)
