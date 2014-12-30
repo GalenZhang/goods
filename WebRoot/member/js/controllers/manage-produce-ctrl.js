@@ -2,5 +2,5 @@
  * 
  */
 
-APP.controller("manageProductCtrl", function($scope, accountService) {
+APP.controller("manageProductCtrl", function($scope, manageProductService) {
 });

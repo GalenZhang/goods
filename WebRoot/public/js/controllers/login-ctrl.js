@@ -20,11 +20,11 @@ APP.controller("loginCtrl", function($scope, loginService) {
 		{
 			if (data.obj == 1)
 			{
-				window.location.href = "../member/admin.html";
+				window.location.href = "../member/admin.jsp";
 			}
 			else
 			{
-				window.location.href = "../member/member.jsp";
+				window.location.href = "../member/member.jsp";//it should forward to public/index.html
 			}
 		}
 		else
