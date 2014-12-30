@@ -54,7 +54,9 @@
     </div>
 </div>
 
-<s:include value="../public/member-footer.html" /><br />
+<s:include value="../public/footer.html" /><br />
+
+<SCRIPT src="js/route.js"></SCRIPT>
 
 <!-- service -->
 <SCRIPT src="js/services/member-service.js"></SCRIPT>

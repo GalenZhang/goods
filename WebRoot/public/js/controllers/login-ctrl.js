@@ -24,7 +24,7 @@ APP.controller("loginCtrl", function($scope, loginService) {
 			}
 			else
 			{
-				window.location.href = "../member/member.jsp";
+				window.location.href = "../member/member.jsp";//it should forward to public/index.html
 			}
 		}
 		else
