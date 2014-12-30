@@ -5,22 +5,20 @@ import org.springframework.stereotype.Service;
 
 import com.sofans.dao.sys.CommonDAO;
 import com.sofans.entity.IBean;
-import com.sofans.entity.SofansSysUser;
-import com.sofans.entity.SofansSysUserRole;
+import com.sofans.entity.goods.User;
 import com.sofans.service.CommonService;
 import com.sofans.util.MD5Util;
-import com.sofans.entity.goods.User;
 
 @Service
-public class GoodsSysUserServiceImpl extends CommonService{
-	
+public class GoodsSysUserServiceImpl extends CommonService {
+
 	@Autowired
 	CommonDAO commonDAO;
-	
+
 	@Override
-	public <T extends IBean> int save(T t) throws Exception{
+	public <T extends IBean> int save(T t) throws Exception {
 		try {
-			User u = (User)t;
+			User u = (User) t;
 			u.setPassword(MD5Util.salt(u.getUsername(), u.getPassword()));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,19 +26,15 @@ public class GoodsSysUserServiceImpl extends CommonService{
 		return commonDAO.save(t);
 	}
 
-	public void remove(SofansSysUser t) throws Exception {
-		//remove user-role
-		commonDAO.deleteByProperty("userid", t.getId(), SofansSysUserRole.class);
-		//remove user;
-		commonDAO.delete(t);
+	@Override
+	public void changePassword(int id, String oldpwd, String newpwd) throws Exception {
+		User user = (User) commonDAO.findById(id, User.class);
+
+		if (MD5Util.verify(user.getPassword(), user.getUsername(), oldpwd)) {
+			user.setPassword(MD5Util.salt(user.getUsername(), newpwd));
+			commonDAO.update(user);
+
+		}
 	}
 
-	public <T extends IBean> void merge(T t) throws Exception {
-		SofansSysUser u = (SofansSysUser)t;
-		u.setPassword(MD5Util.salt(u.getName(), u.getPassword()));
-		commonDAO.merge(t);
-	}
-
-	
-	
 }

@@ -21,12 +21,6 @@ APP.service("registerService",['httpService',function(httpService){
 			});
 		},
 		
-//		returnNumber:function(scope){
-//			httpService.get(scope, '../pub/member/returnNumber.do').then(function(data) {
-//				scope.$broadcast('returnNumber', data);
-//			},function(data) {
-//				alert('error');
-//			});
-//		}
+
 	};
 }]);

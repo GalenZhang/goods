@@ -56,6 +56,17 @@ public class CommonDAO {
 			throw re;
 		}
 	}
+	
+	public void update(IBean entity){
+		log.debug("updata entity");
+		try {
+			getCurrentSession().update(entity);
+		} catch (RuntimeException re) {
+			throw re;
+		}
+		
+	}
+	
 
 	public void deleteByProperty(String propertyName, Object value,
 			Class<?> clazz) throws Exception {
@@ -231,6 +242,7 @@ public class CommonDAO {
 		return ((Long) next).intValue();
 	}
 	
+
 	
 
 	/*

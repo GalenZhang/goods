@@ -106,6 +106,24 @@ public class CommonService implements IServiceBase{
 		return null;
 	}
 
+	@Override
+	public <T extends IBean> void updata(T t) throws Exception {
+		commonDAO.update(t);
+		
+	}
+
+	@Override
+	public void changePassword(int id, String oldpwd, String newpwd) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+
 
 
 }

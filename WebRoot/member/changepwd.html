@@ -1,1 +1,24 @@
-changepwd.html
+<div ng-controller="changepwdCtrl">
+
+  <div>
+  会员信息 -> 修改密码
+  <input type="hidden" id="changePwd_id" value="{{id}}" />
+    <table>
+      <tr>
+        <td>旧密码:</td>
+        <td><input type="password" id="oldpassword" value="" /></td>
+      </tr>
+      <tr>
+        <td>新密码:</td>
+        <td><input type="password" id="newpassword" value=""/></td>
+      </tr>
+      <tr>
+        <td>确认新密码:</td>
+        <td><input type="password" id="renewpassword" value=""/></td>
+      </tr>
+    </table>
+    <span id="change_password_msg"></span><br>
+    <input type="button" id="password_saveBtn" value="保存"/>
+  </div>
+
+</div>

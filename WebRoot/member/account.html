@@ -1,1 +1,25 @@
-account.html
+<div ng-controller="accountCtrl">
+	会员信息 -> 账户信息
+
+	<table style="">
+		<tr>
+			<td>用户名:</td>
+			<td><span>{{username}}</span><input type="hidden" id="id"
+				value="{{id}}" /></td>
+		</tr>
+		<tr>
+			<td>E-Mail:</td>
+			<td><input type="text" id="email" id="email" value="{{email}}" /></td>
+		</tr>
+		<tr>
+			<td>电话号码:</td>
+			<td><input type="text" id="phone" id="phone" value="{{phone}}" /></td>
+		</tr>
+
+	</table>
+	<div style="height: 25px">
+	<span id="moileMsg"></span>
+	<span id="confirmMsg"></span> 
+	</div>
+	<input type="button" id="saveBtn" ng-click="margeUser()" value="保存">
+</div>

@@ -20,7 +20,7 @@ APP.controller("loginCtrl", function($scope, loginService) {
 		{
 			if (data.obj == 1)
 			{
-				window.location.href = "../member/admin.html";
+				window.location.href = "../member/admin.jsp";
 			}
 			else
 			{

@@ -5,6 +5,7 @@ import java.util.List;
 import com.sofans.entity.IBean;
 import com.sofans.entity.PageCondition;
 import com.sofans.entity.PageResult;
+import com.sofans.entity.goods.User;
 
 
 public interface IServiceBase {
@@ -39,10 +40,16 @@ public interface IServiceBase {
 	
 	<T extends IBean> T findBySQL(Object value) throws Exception;
 	
+	<T extends IBean>void updata(T t)throws Exception;
 	/*
 	 * 
 	 */
 //	String employeeNumber();
 //	String orderNumber();
+
+
+	void changePassword(int id, String oldpwd, String newpwd) throws Exception;
+
+
 	
 }
