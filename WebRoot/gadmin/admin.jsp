@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
         <div class="space20"></div>
         
-		<div ng-view></div>
+		<div ui-view></div>
         
         
     </div>

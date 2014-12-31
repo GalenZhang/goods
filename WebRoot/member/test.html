@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+  <head>
+    <title>test.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=ISO-8859-1">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<link href="../public/style/global.css" rel="stylesheet" type="text/css" />
+<link href="../public/style/member.css" rel="stylesheet" type="text/css" />
+<script src="../vendor/jquery/jquery-1.10.2.js"></script>
+<script src="../vendor/jquery/jquery.html5uploader.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/angular/angular.js"></script>
+<script src="../vendor/angular/angular-ui-router.js"></script>
+<SCRIPT src="../js/module.js"></SCRIPT>
+<script src="order/js/order-route.js"></script>
+<script src="js/controllers/test-order-ctrl.js"></script>
+
+<!-- core --
+http://www.haodaima.net/art/2812649
+http://segmentfault.com/q/1010000000729952/a-1020000000730262
+-->
+  </head>
+  
+  <body ng-controller="testOrderCtrl">
+  <a href="#/mailbox">aaaaa</a>
+  
+333  
+  <div>
+    <div ui-view="filters"></div> 
+    <div ui-view="mailbox"></div> 
+    <div ui-view="priority"></div>
+</div>
+
+44444
+  </body>
+  
+  
+  
+</html>

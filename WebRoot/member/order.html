@@ -1,15 +1,26 @@
  <!--order list-->
+ <div ng-controller="testOrderCtrl">
 <div class="member_title">
 	<h5>我的订单</h5>
     <ul class="member_t_lab">
-    	<li id="atb_1" class="main_labels"><a href="#/waitingforpay" onMouseover="hoverLi(1,3,'a');">待付款<span class="red">(3)</span></a></li>
-        <li id="atb_2"><a href="#/sending" onMouseover="hoverLi(2,3,'a');">已发货</a></li>
-        <li id="atb_3"><a href="#/waitingforcriticism" onMouseover="hoverLi(3,3,'a');">待评论<span class="red">(3)</span></a></li>
+    <!--onMouseover="hoverLi(1,3,'a');" -->
+    	<li id="atb_1" class="main_labels"><a href="#/waitingforpay" >待付款<span class="red">(3)</span></a></li>
+	<!-- onMouseover="hoverLi(2,3,'a');" -->        
+        <li id="atb_2"><a href="#/sending">已发货</a></li>
+    <!--  onMouseover="hoverLi(3,3,'a');" -->
+        <li id="atb_3"><a href="#/waitingforcriticism">待评论<span class="red">(3)</span></a></li>
     </ul>
 </div>
 <div class="space10"></div>
-		
-        <!--/order list-->
+
+<div class="order_list">
+	<div ui-view="waitingforpay"></div>
+	<div ui-view="sending"></div>
+	<div ui-view="waitingforcriticism"></div>
+</div>
+</div>
+
+<!--/order list-->
         <div class="space20"></div>
         
         <div class="member_title">
@@ -71,13 +82,16 @@
         </div>
         
         <script src="../js/lrscroll.js"></script>
-        <script src="order/js/order-route.js"></script>
-        <script src="order/js/services/waitingforpay-service.js"></script>
-        <script src="order/js/services/sending-service.js"></script>
-        <script src="order/js/services/waitingforcriticism-service.js"></script>
-        
-        <script src="order/js/controllers/waitingforpay-ctrl.js"></script>
-        <script src="order/js/controllers/sending-ctrl.js"></script>
-        <script src="order/js/controllers/waitingforcriticism-ctrl.js"></script>
-        
-        
+
+        <script>
+function g(tab){return document.getElementById(tab);} 
+function hoverLi(n,nm,c){ 
+debugger;
+	for(var i=1;i<=nm;i++){   //如果有N个标签,就将i<=N; 
+		g(c+'tb_'+i).className='';
+		g(c+'tbc_'+i).className='undis';
+	}
+	g(c+'tbc_'+n).className='dis';
+	g(c+'tb_'+n).className='main_labels'; 
+} 
+</script>

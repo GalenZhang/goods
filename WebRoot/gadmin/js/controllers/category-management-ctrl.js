@@ -1,6 +1,6 @@
 /**
  * 
  */
-APP.controller("categoryManagementCtrl", function($scope, categoryManagerService) {
+APP.controller("categoryManagementCtrl", function($scope, categoryManagementService) {
 	
 });
