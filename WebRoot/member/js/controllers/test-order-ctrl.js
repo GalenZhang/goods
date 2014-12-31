@@ -17,7 +17,7 @@ APP.controller("testOrderCtrl", function($rootScope, $scope) {
 	});
 
 	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
-		alert('stateChangeError');
+		debugger;
 	});
 
 

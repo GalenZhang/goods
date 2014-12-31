@@ -1,38 +1,18 @@
 APP.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,  $urlRouterProvider){
 	
-	debugger;
-	
 	$stateProvider.state('inbox', 
 			{
-		url: '/newsFeed',
-		views: { 
+		url: '/inbox',
+		views: {
 			'filters': 	{
-				template: '<h4>Filter inbox</h4>', 
-				controller: function($scope) {
-					
-					$scope.a = 'filters';
-					
-				}
+				template: '<h4>Filter inbox</h4>'
+			},
+			'mailbox': {
+				template: '<h4>Priority inbox</h4>'
 			}, 
-			'mailbox': { 
-				template: '<h4>Priority inbox</h4>',
-				controller: function($scope) {
-					
-					$scope.a = 'mailbox';
-					
-				}
-			}, 
-			'priority': { 
-				template: '<h4>Priority inbox</h4>', 
-				controller: function($scope) {
-					alert(444);
-					$scope.a = 'priority';
-					
-				},
-				resolve: {
-					facebook: function() { return FB.messages(); } } 
-				}
-			}});
+			'priority': {
+				template: '<h4>Priority inbox</h4>'
+			}}});
 		$urlRouterProvider.otherwise('/inbox');
 }]);
 
