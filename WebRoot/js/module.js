@@ -2,4 +2,4 @@
  * 
  */
 
-var APP = angular.module('APP', ['ngRoute']);
+var APP = angular.module('APP', ['ui.router']);
