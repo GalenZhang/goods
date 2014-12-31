@@ -30,7 +30,7 @@
 		<value>5</value>
 	 </property>
 	 <property name="maxActive">
-		<value>10</value>
+		<value>15</value>
 	 </property>
 	 <property name="maxIdle">
 		<value>5</value>

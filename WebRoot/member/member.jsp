@@ -39,9 +39,10 @@
         </div>
         <div class="space20"></div>
         
-		<div ng-view></div>
-        
-        
+		<div ui-view></div>
+	<div ui-view="waitingforpay"></div>
+		<div ui-view="sending"></div>
+		<div ui-view="waitingforcriticism"></div>
     </div>
     <!--/right-->
 </div>
@@ -55,8 +56,10 @@
 </div>
 
 <s:include value="../public/footer.html" /><br />
-
 <SCRIPT src="js/route.js"></SCRIPT>
+<!-- 
+<script src="order/js/order-route.js"></script>
+ -->
 
 <!-- service -->
 <SCRIPT src="js/services/member-service.js"></SCRIPT>
@@ -68,6 +71,10 @@
 <SCRIPT src="js/services/criticism-service.js"></SCRIPT>
 <SCRIPT src="js/services/order-service.js"></SCRIPT>
 <SCRIPT src="js/services/receivedaddress-service.js"></SCRIPT>
+<script src="order/js/services/waitingforpay-service.js"></script>
+<script src="order/js/services/sending-service.js"></script>
+<script src="order/js/services/waitingforcriticism-service.js"></script>
+        
 <!-- service -->
 
 <!-- controller -->
@@ -79,18 +86,15 @@
 <SCRIPT src="js/controllers/coupon-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/criticism-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/order-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/test-order-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/receivedaddress-ctrl.js"></SCRIPT>
+<script src="js/controllers/order-route-ctrl.js"></script>
+<script src="order/js/controllers/waitingforpay-ctrl.js"></script>
+<script src="order/js/controllers/sending-ctrl.js"></script>
+<script src="order/js/controllers/waitingforcriticism-ctrl.js"></script>
 <!-- controller -->
 
-<script>
-function g(tab){return document.getElementById(tab);} 
-function hoverLi(n,nm,c){ 
-	for(var i=1;i<=nm;i++){   //如果有N个标签,就将i<=N; 
-		g(c+'tb_'+i).className='';
-		g(c+'tbc_'+i).className='undis';
-	}
-	g(c+'tbc_'+n).className='dis';
-	g(c+'tb_'+n).className='main_labels'; 
-} 
-</script>
+
+        
+
 </html>

@@ -13,14 +13,17 @@ APP.controller("loginCtrl", function($scope, loginService) {
 		}
 	};
 	
-	
+	$scope.showRegister = function()
+	{
+		
+	};
 	
 	$scope.$on("login", function(event, data){
 		if(data.result)
 		{
 			if (data.obj == 1)
 			{
-				window.location.href = "../member/admin.jsp";
+				window.location.href = "../gadmin/admin.jsp";
 			}
 			else
 			{

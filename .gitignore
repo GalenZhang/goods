@@ -4,3 +4,5 @@
 **/.project
 /build/
 sql
+**/.DS_Store
+src/com/sofans/spring/conf/applicationContext.xml
