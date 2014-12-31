@@ -41,8 +41,18 @@ APP.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,  $u
 	$stateProvider.state('order', {
 		name: 'order',
 		url: '/order',
-	    templateUrl: 'order.html',
-	    controller: 'orderCtrl'
+	    //templateUrl: 'order.html',
+	    controller: 'orderCtrl',
+	    views: {
+			'waitingforpay': {
+				template: '<h4>Filter inbox</h4>'
+			},
+			'sending': {
+				template: '<h4>Priority inbox</h4>'
+			}, 
+			'waitingforcriticism': {
+				template: '<h4>Priority inbox</h4>'
+			}}
 	  })
 	  .state('criticism', {
 		name: 'criticism',

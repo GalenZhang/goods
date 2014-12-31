@@ -40,7 +40,9 @@
         <div class="space20"></div>
         
 		<div ui-view></div>
-        
+	<div ui-view="waitingforpay"></div>
+		<div ui-view="sending"></div>
+		<div ui-view="waitingforcriticism"></div>
     </div>
     <!--/right-->
 </div>
@@ -54,9 +56,10 @@
 </div>
 
 <s:include value="../public/footer.html" /><br />
-
 <SCRIPT src="js/route.js"></SCRIPT>
+<!-- 
 <script src="order/js/order-route.js"></script>
+ -->
 
 <!-- service -->
 <SCRIPT src="js/services/member-service.js"></SCRIPT>

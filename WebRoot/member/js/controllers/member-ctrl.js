@@ -15,13 +15,12 @@ APP.controller("memberCtrl", function($rootScope, $scope, memberService) {
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
 		alert('$stateChangeStart');
 	});
-	 */
 	$rootScope.$on('$stateNotFound', function(event, toState, toParams, fromState, fromParams){
 	});
+	 */
 /*	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
 		alert('stateChangeSuccess');
 	});
-*/
 	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
 		alert('stateChangeError');
 	});
@@ -31,6 +30,7 @@ APP.controller("memberCtrl", function($rootScope, $scope, memberService) {
 		alert('$viewContentLoading');
 	});
 
+ */
 
 /*	$rootScope.$on('$viewContentLoaded', function(event){
 		alert('viewContentLoaded');
