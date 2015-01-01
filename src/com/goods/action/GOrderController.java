@@ -27,17 +27,8 @@ public class GOrderController {
 	
 	@RequestMapping(value = "/member/order", method = RequestMethod.POST)
 	public @ResponseBody Result getOrder(HttpServletRequest request, HttpServletResponse res) {
-		User user = null;
-		try {
-			user = goodsLoginServiceImpl.goodsLogin(u.getUsername(), u.getPassword());
-			request.getSession().setAttribute(Constant.USER_ID, user.getUsername());
-			request.getSession().setAttribute(Constant.USER_ROLE, user.getIs_admin());
-		} catch (Exception e) {
-			log.error(e);
-			return new Result(false, "登陆的败!");
-		}
 		
-		return new Result(true, "登陆成功！", user.getIs_admin());
+		return new Result(true, "登陆成功！");
 	}
 	
 }
