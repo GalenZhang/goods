@@ -1,103 +1,79 @@
-/*APP.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-    .when('/order', {
-      templateUrl: 'order.html',
-      controller: 'orderCtrl'
-    })
-    .when('/criticism', {
-        templateUrl: 'criticism.html',
-        controller: 'criticismCtrl'
-    })
-    .when('/collect', {
-  	  templateUrl: 'collect.html',
-        controller: 'collectCtrl'
-    })
-    .when('/change', {//余额
-        templateUrl: 'change.html',
-        controller: 'changeCtrl'
-    })
-    .when('/coupon', {//优惠
-        templateUrl: 'coupon.html',
-        controller: 'couponCtrl'
-    })
-    .when('/account', {
-        templateUrl: 'account.html',
-        controller: 'accountCtrl'
-    })
-    .when('/changepwd', {
-        templateUrl: 'changepwd.html',
-        controller: 'changepwdCtrl'
-    })
-    .when('/receivedaddress', {
-        templateUrl: 'receivedaddress.html',
-        controller: 'receivedaddressCtrl'
-    })
-    .otherwise({
-      redirectTo: '/order'
-    });
-}]);*/
-
 APP.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,  $urlRouterProvider){
-	$stateProvider.state('order', {
-		name: 'order',
-		url: '/order',
-	    //templateUrl: 'order.html',
+	$stateProvider.state('orderdetail', {
+		url: '/order/:id',
 	    controller: 'orderCtrl',
 	    views: {
-			'waitingforpay': {
-				template: '<h4>Filter inbox</h4>'
+	    	'top': {
+	    		templateUrl: 'order/top.html'
+	    	},
+			'orderinfo': {
+				resolve:{
+					waitingforpayObj: function(waitingforpayService){
+						
+					},
+					sendingObj: function(sendingService){
+						
+					},
+					waitingforcriticismObj: function(waitingforcriticismService){
+						
+					}
+				},
+				templateUrl: function($stateParams){
+					if($stateParams.id == 1)
+						return 'order/waitingforpay.html';
+					else if($stateParams.id == 2)
+						return 'order/sending.html';
+					else if($stateParams.id == 3)
+						return 'order/waitingforcriticism.html';
+					else
+						return 'order/waitingforpay.html';
+				},
+				controller: function($scope, $stateParams){
+					$scope.$parent.selected = $stateParams.id;
+				}
+				
 			},
-			'sending': {
-				template: '<h4>Priority inbox</h4>'
-			}, 
-			'waitingforcriticism': {
-				template: '<h4>Priority inbox</h4>'
+			'bottom': {
+				templateUrl: 'order/bottom.html'
 			}}
 	  })
 	  .state('criticism', {
-		name: 'criticism',
 		url: '/criticism',
 	    templateUrl: 'criticism.html',
 	    controller: 'criticismCtrl'
 	  })
 	  .state('collect', {
-		name: 'collect',
 		url: '/collect',
 	    templateUrl: 'collect.html',
 	    controller: 'collectCtrl'
 	  })
 	  .state('change', {
-		name: 'change',
 		url: '/change',
 	    templateUrl: 'change.html',
 	    controller: 'changeCtrl'
 	  })
 	  .state('coupon', {
-		name: 'coupon',
 		url: '/coupon',
 	    templateUrl: 'coupon.html',
 	    controller: 'couponCtrl'
 	  })
 	  .state('account', {
-		name: 'account',
 		url: '/account',
 	    templateUrl: 'account.html',
 	    controller: 'accountCtrl'
 	  })
 	  .state('changepwd', {
-		name: 'changepwd',
 		url: '/changepwd',
 	    templateUrl: 'changepwd.html',
 	    controller: 'changepwdCtrl'
 	  })
 	  .state('receivedaddress', {
-		name: 'receivedaddress',
 		url: '/receivedaddress',
 	    templateUrl: 'receivedaddress.html',
 	    controller: 'receivedaddressCtrl'
 	  })
 	  ;
-	//$urlRouterProvider.otherwise('/order');
+	$urlRouterProvider.otherwise('/order/1');
 	
 }]);
 

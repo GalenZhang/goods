@@ -122,6 +122,7 @@ public class MD5Util {
 	{
 		
 		System.out.println(MD5Util.salt("ray", "goods.123"));
+		System.out.println(MD5Util.salt("admin", "goods.123"));
 		
 	}
 	

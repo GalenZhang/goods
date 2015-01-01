@@ -40,9 +40,15 @@
         <div class="space20"></div>
         
 		<div ui-view></div>
-	<div ui-view="waitingforpay"></div>
-		<div ui-view="sending"></div>
-		<div ui-view="waitingforcriticism"></div>
+		<div ui-view="orderdeail" ng-controller="orderCtrl">
+			<div ui-view="top"></div>
+			<div ui-view="orderinfo"></div>
+			<!-- <div ui-view="sending"></div>
+			<div ui-view="waitingforcriticism"></div> -->
+			<div ui-view="bottom"></div>
+		</div>
+		
+		
     </div>
     <!--/right-->
 </div>
@@ -93,8 +99,5 @@
 <script src="order/js/controllers/sending-ctrl.js"></script>
 <script src="order/js/controllers/waitingforcriticism-ctrl.js"></script>
 <!-- controller -->
-
-
-        
 
 </html>

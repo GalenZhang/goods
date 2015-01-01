@@ -21,6 +21,7 @@ a:hover { color:#F21421; }
 .red { color:#F21421; }
 .blue { color:#0099CC; }
 .gray { color:#999999; }
+.del { text-decoration:line-through; color:#999999; }
 .left { float:left; }
 .right { float:right; }
 .center { text-align:center; }
@@ -49,8 +50,13 @@ visibility:hidden;
 
 /* bread */
 #bread { background-color:#F4F4F4; height:30px; overflow:hidden; color:#666; line-height:30px; }
-#bread a { color:#666; }
-.addfavor {  }
+#bread a { color:#666; display:inline-block  }
+	#bread a.addfavor { padding-left:15px; padding-right:10px; background:url('../images/icon.png') no-repeat 3px -274px; }
+	#bread a.sina { padding-left:15px; padding-right:10px; background:url('../images/icon.png') no-repeat 3px -314px; }
+	#bread .right a.line { background:url('../images/line2.gif') repeat-y 0px 0px; padding:0 15px; }
+	#bread .right a.line span { display:inline-block; }
+	#bread .right a .cart { padding-left:25px; background:url('../images/icon.png') no-repeat 0px 8px; }
+	#bread .right a .order { padding-left:20px; background:url('../images/icon.png') no-repeat 0px -28px; }
 
 
 /* head */
@@ -76,14 +82,53 @@ visibility:hidden;
 	.nav li a { display:block; color:#FFFFFF; padding:0 25px; height:40px; line-height:40px; word-spacing:10px; }
 	.nav li a:Hover { background:#C80D11; }
 	.nav li.cur a { background:#FFBB2A; }
-
+#dir { line-height:22px; min-height:22px; -height:22px; margin-bottom:10px; padding-bottom:8px; }
+.flow-title { background:#F7F7F7; padding-left:15px; font-size:14px; font-family:微软雅黑; height:40px; line-height:40px; font-weight:bold; }
+.botline { border-bottom:1px solid #E3E3E3; }
+.flow-title .right a{ padding-right:10px; font-weight:normal; font-size:12px; }
+.flow-title .right a:hover { text-decoration:underline; }
+#user-order-list td { border-right:1px solid #E9E9E9; border-bottom:1px solid #E9E9E9; font-family:Arial; }
+	.t-border-l { border-left:1px solid #E9E9E9; }
+	.t-border-r { border-right:1px solid #E9E9E9; }
+	.t-border-b { border-bottom:1px solid #E9E9E9; }
+	.t-border-none { border:none; height:10px; }
+	#user-order-list td.t-border-none { border-right:none;  border-bottom:none; }
+	.t-border-t { border-top:1px solid #E9E9E9; }
+	.user-ol-thumb { width:80px; height:80px; border:1px solid #D1D1D1; float:left; margin:10px; display:inline; }
+	.user-ol-t { float:left; padding:15px 0px 0 5px; line-height:1.7; width:270px; }
+	.user-ol-pay { width:63px; height:25px; line-height:25px; display:block; background:url(images/bg2.jpg) no-repeat -340px -450px; color:#FFF; text-align:center; font-weight:bold; }
 
 
 /* bottom */
+#bottom { background:#F7F7F7; padding-bottom:30px; }
+#links { text-align:center; color:#666; border-bottom:1px solid #EEE; padding:15px 0; word-spacing:8px; }
+#links a { color:#666; }
+#help .left { width:220px; text-align:center; padding:20px 0 0; }
+#help dl { border-left:1px dotted #E0E0E0; width:164px; min-height:120px; float:left; padding-left:30px; margin-top:20px; display:inline; }
+	#help dt { font-size:14px; line-height:30px; }
+	#help dt a { color:#E50F13; display:block; width:auto; padding-left:32px; background:url('../images/icon.png') no-repeat 0px -497px; }
+	#help dl.help1 dt a { background-position: 0px -497px; }
+	#help dl.help2 dt a { background-position: 0px -433px; }
+	#help dl.help3 dt a { background-position: 0px -377px; }
+	#help dl.help4 dt a { background-position: 0px -567px; }
+	#help dl.help5 dt a { background-position: 0px -626px; }
+	#help dd { padding-left:32px; }
+	#help dd a { color:#666; }
 #guarantee { background-color:#333333; text-align:center; }
+
+#side_float { position:fixed; right:0; top:400px; width:60px; }
+	#side_float a { display:block; width:60px; height:28px; background:url('../images/side.jpg') no-repeat 0px 0px; text-align:center; padding-top:32px; }
+	#side_float a#side1 { background-position:-75px -1px; }
+	#side_float a#side2 { background-position:-75px -62px; }
+	#side_float a#side3 { background-position:-75px -123px; }
+	#side_float a:hover { color:#FFF; }
+	#side_float a#side1:hover { background-position:-0px -1px; }
+	#side_float a#side2:hover { background-position:-0px -62px; }
+	#side_float a#side3:hover { background-position:-0px -123px; }
 
 
 /* footer */
-#footer { padding:20px 0; line-height:1.8; color:#666; }
+#footer { padding:20px 0; line-height:1.8; color:#666; position:relative; }
 #footer a { color:#666; }
 #footer img { height:40px; margin:10px 5px; }
+#footer img#ew { position:absolute; top:30px; right:0px; height:97px; margin:0; }
