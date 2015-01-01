@@ -1,5 +1,7 @@
 package com.sofans.entity.goods;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,10 @@ import com.sofans.entity.IBean;
  * Order entity. @author MyEclipse Persistence Tools
  */
 
+/**
+ * @author admin
+ *
+ */
 @Entity
 @Table(name="order",catalog="goods")
 public class Order implements IBean {
@@ -38,23 +44,26 @@ public class Order implements IBean {
 	@Column(name="user_id")
 	private Integer userId;
 	
-	@Column(name="order_info_id")
-	private Integer orderInfoId;
-	
-	@Column(name="is_play")
-	private Integer isPay;
+	@Column(name="pay_status")//OrderStatus
+	private Integer payStatus;
 	
 	@Column(name="total_price")
 	private Float totalPrice;
 	
-	@Column(name="ship_free")
-	private Float shipFree;
+	@Column(name="transportation_fee")
+	private Float transportationFee;
 	
-	@Column(name="pay_type")
+	@Column(name="pay_type")//PayType
 	private String payType;
 	
 	@Column(name="deliver_address_id")
 	private Integer deliverAddressId;
+	
+	@Column(name="send_time")
+	private Timestamp sendTime;
+	//order_time
+	@Column(name="order_time")
+	private Timestamp orderTime;
 
 	// Constructors
 
@@ -69,17 +78,18 @@ public class Order implements IBean {
 
 	/** full constructor */
 	public Order(Integer id, String orderNumber, Integer userId,
-			Integer orderInfoId, Integer isPay, Float totalPrice,
-			Float shipFree, String payType, Integer deliverAddressId) {
+			Integer payStatus, Float totalPrice,
+			Float transportationFee, String payType, Integer deliverAddressId, Timestamp sendTime, Timestamp orderTime) {
 		this.id = id;
 		this.orderNumber = orderNumber;
 		this.userId = userId;
-		this.orderInfoId = orderInfoId;
-		this.isPay = isPay;
+		this.payStatus = payStatus;
 		this.totalPrice = totalPrice;
-		this.shipFree = shipFree;
+		this.transportationFee = transportationFee;
 		this.payType = payType;
 		this.deliverAddressId = deliverAddressId;
+		this.sendTime = sendTime;
+		this.orderTime = orderTime;
 	}
 
 	// Property accessors
@@ -108,20 +118,12 @@ public class Order implements IBean {
 		this.userId = userId;
 	}
 
-	public Integer getOrderInfoId() {
-		return this.orderInfoId;
+	public Integer getPayStatus() {
+		return payStatus;
 	}
 
-	public void setOrderInfoId(Integer orderInfoId) {
-		this.orderInfoId = orderInfoId;
-	}
-
-	public Integer getIsPay() {
-		return this.isPay;
-	}
-
-	public void setIsPay(Integer isPay) {
-		this.isPay = isPay;
+	public void setPayStatus(Integer payStatus) {
+		this.payStatus = payStatus;
 	}
 
 	public Float getTotalPrice() {
@@ -132,12 +134,12 @@ public class Order implements IBean {
 		this.totalPrice = totalPrice;
 	}
 
-	public Float getShipFree() {
-		return this.shipFree;
+	public Float getTransportationFee() {
+		return transportationFee;
 	}
 
-	public void setShipFree(Float shipFree) {
-		this.shipFree = shipFree;
+	public void setTransportationFee(Float transportationFee) {
+		this.transportationFee = transportationFee;
 	}
 
 	public String getPayType() {
@@ -156,4 +158,19 @@ public class Order implements IBean {
 		this.deliverAddressId = deliverAddressId;
 	}
 
+	public Timestamp getSendTime() {
+		return sendTime;
+	}
+
+	public void setSendTime(Timestamp sendTime) {
+		this.sendTime = sendTime;
+	}
+
+	public Timestamp getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(Timestamp orderTime) {
+		this.orderTime = orderTime;
+	}
 }

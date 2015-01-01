@@ -30,7 +30,8 @@ public class GLoginController {
 		User user = null;
 		try {
 			user = goodsLoginServiceImpl.goodsLogin(u.getUsername(), u.getPassword());
-			request.getSession().setAttribute(Constant.USER_ID, user.getUsername());
+			request.getSession().setAttribute(Constant.USER_ID, user.getId());
+			request.getSession().setAttribute(Constant.USER_NAME, user.getUsername());
 			request.getSession().setAttribute(Constant.USER_ROLE, user.getIs_admin());
 		} catch (Exception e) {
 			log.error(e);
@@ -42,7 +43,7 @@ public class GLoginController {
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
 	public @ResponseBody Result getUser(HttpServletRequest request){
-		String username = String.valueOf(request.getSession().getAttribute(Constant.USER_ID));
+		String username = String.valueOf(request.getSession().getAttribute(Constant.USER_NAME));
 		if (org.apache.commons.lang.StringUtils.isEmpty(username))
 		{
 			username = "";

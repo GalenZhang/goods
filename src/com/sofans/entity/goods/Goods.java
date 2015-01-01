@@ -39,6 +39,9 @@ public class Goods implements IBean {
 	@Column(name="good_name")
 	private String goodName;
 	
+	@Column(name="good_number")//auto generate
+	private String goodNumber;
+	
 	@Column(name="introduce")
 	private String introduce;
 	
@@ -77,13 +80,14 @@ public class Goods implements IBean {
 	}
 
 	/** full constructor */
-	public Goods(Integer id, Integer goodsClassId, String goodName,
+	public Goods(Integer id, Integer goodsClassId, String goodName, String goodNumber,
 			String introduce, String brand, Float weight, String image,
 			Float marketPrice, Float memberPrice, Integer isHot,
 			Integer isDiscount, Timestamp addData) {
 		this.id = id;
 		this.goodsClassId = goodsClassId;
 		this.goodName = goodName;
+		this.goodNumber = goodNumber;
 		this.introduce = introduce;
 		this.brand = brand;
 		this.weight = weight;
@@ -119,6 +123,14 @@ public class Goods implements IBean {
 
 	public void setGoodName(String goodName) {
 		this.goodName = goodName;
+	}
+
+	public String getGoodNumber() {
+		return goodNumber;
+	}
+
+	public void setGoodNumber(String goodNumber) {
+		this.goodNumber = goodNumber;
 	}
 
 	public String getIntroduce() {

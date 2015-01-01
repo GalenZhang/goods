@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -48,7 +46,7 @@ public class UserInfoController {
 			userAddressServiceImpl.save(deliverAddress);
 			return "添加成功!";
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("添加地址出错： "+e);
 		}
 		return "添加失败!";
 		

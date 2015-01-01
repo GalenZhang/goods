@@ -1,4 +1,4 @@
-package com.sofans.service.member;
+package com.sofans.service.member.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
