@@ -1,5 +1,7 @@
 package com.sofans.entity.goods;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,6 +38,11 @@ public class GoodsClass implements IBean {
 	@Column(name="class_name")
 	private String className;
 
+	@Column(name="parent_id")
+	private String parentId;
+	
+	@Column(name="add_time")
+	private Timestamp addTime;
 	// Constructors
 
 	/** default constructor */
@@ -48,9 +55,11 @@ public class GoodsClass implements IBean {
 	}
 
 	/** full constructor */
-	public GoodsClass(Integer id, String className) {
+	public GoodsClass(Integer id, String className, String parentId,Timestamp addTime) {
 		this.id = id;
 		this.className = className;
+		this.parentId = parentId;
+		this.addTime = addTime;
 	}
 
 	// Property accessors
@@ -70,5 +79,23 @@ public class GoodsClass implements IBean {
 	public void setClassName(String className) {
 		this.className = className;
 	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public Timestamp getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Timestamp addTime) {
+		this.addTime = addTime;
+	}
+	
+	
 
 }
