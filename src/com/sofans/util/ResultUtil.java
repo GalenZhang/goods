@@ -10,6 +10,10 @@ public class ResultUtil {
 		return new Result(rs, desc);
 	}
 	
+	public static Result getResult(boolean rs, String desc, Object obj){
+		return new Result(rs, desc, obj);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static String getResult(int rs, String desc){
 		JSONObject obj = new JSONObject();

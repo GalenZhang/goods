@@ -50,14 +50,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- service -->
 <SCRIPT src="js/services/admin-service.js"></SCRIPT>
 <SCRIPT src="js/services/category-management-service.js"></SCRIPT>
-<SCRIPT src="js/services/manage-product-service.js"></SCRIPT>
+<SCRIPT src="js/services/goods-service.js"></SCRIPT>
 <SCRIPT src="js/services/judge-criticism-service.js"></SCRIPT>
 <!-- service -->
 
 <!-- controller -->
 <SCRIPT src="js/controllers/admin-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/category-management-ctrl.js"></SCRIPT>
-<SCRIPT src="js/controllers/manage-produce-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/goods-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/judge-criticism-ctrl.js"></SCRIPT>
 <!-- controller -->
 

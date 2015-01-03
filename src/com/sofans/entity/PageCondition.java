@@ -2,6 +2,8 @@ package com.sofans.entity;
 
 import java.util.Map;
 
+import com.sofans.constant.Constant;
+
 public class PageCondition {
 	private int start;
 
@@ -9,7 +11,7 @@ public class PageCondition {
 	
 	private String sort;
 
-	private String dir;
+	private String dir;//directory
 	
 	private Map<String, Object> conditions;//condition
 
@@ -22,6 +24,8 @@ public class PageCondition {
 	}
 
 	public int getLimit() {
+		if (limit == 0)
+			return Constant.PAGE_SIZE;
 		return limit;
 	}
 

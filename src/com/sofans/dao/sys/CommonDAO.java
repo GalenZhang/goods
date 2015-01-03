@@ -66,7 +66,6 @@ public class CommonDAO {
 		}
 		
 	}
-	
 
 	public void deleteByProperty(String propertyName, Object value,
 			Class<?> clazz) throws Exception {
@@ -177,7 +176,8 @@ public class CommonDAO {
 				q.list());
 		int totalSize = countByCondition(conditions, clazz);
 		pageResult.setTotalSize(totalSize);
-		int pagesize = pageResult.getPagesize();
+		int pagesize = pageCondition.getLimit();
+		pageResult.setPages(pagesize);
 
 		int pages = totalSize % pagesize == 0 ? totalSize / pagesize
 				: totalSize / pagesize + 1;

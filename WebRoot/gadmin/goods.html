@@ -1,0 +1,118 @@
+
+<div class="cart">
+	<div style="margin-bottom: 5px;">
+		<input class="btn btn-default" type="button" value=" 添 加 " ng-click="add()">
+	</div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="5">
+	  <tbody><tr>
+	    <th width="50">&nbsp;<input type="checkbox">全选</th>
+	    <th>编号</th>
+	    <th>商品名称</th>
+	    <th>单价</th>
+	    <th >货号</th>
+	    <th>价格</th>
+	    <th>库存</th>
+	    <th>上架</th>
+	    <th>精品</th>
+	    <th>热销</th>
+	    <th>操作</th>
+	  </tr>
+	  <tr ng-repeat="item in list">
+	    <td>&nbsp;<input type="checkbox"></td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>	    
+	  </tr>
+	</tbody></table>
+</div>
+
+
+
+<!-- insert  Modal -->
+<div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">代理商信息</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form role="form">
+          <div class="form-group">
+          
+            <label for="empname">绑定销售经理</label>
+            <select id="empName" class="form-control" placeholder="销售经理" ng-model="sufansSysAngent.emp_id">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empID == sufansSysAngent.emp_id">{{emp.empName}}</option>
+			</select>
+			<select id="empNametwo" class="form-control" placeholder="销售经理" ng-model="sufansSysAngent.emp_id" disabled="disabled">
+				<option value="">-- 请选择 --</option>
+				<option ng-repeat="emp in Angentemployees" value="{{emp.empID}}" ng-selected=" emp.empName == sufansSysAngent.emp_id">{{emp.empName}}</option>
+			</select>
+
+          </div>
+		  <div class="form-group">
+		    <label for="username">用户</label>
+		    <input type="text" class="form-control" id="username" ng-model="sufansSysAngent.name" placeholder="姓名">
+		  </div>
+		   <div class="form-group">
+		    <label for="sex">性别</label>
+		    <div class="form-control">
+		    <input type="radio" name="sex" ng-model="sufansSysAngent.sex" value="1" checked="checked">男&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input type="radio" name="sex" ng-model="sufansSysAngent.sex" value="0">女
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="age">年龄</label>
+		    <input type="text" class="form-control" id="age" ng-model="sufansSysAngent.age" placeholder="年龄">
+		  </div>
+		  <div class="form-group">
+		    <label for="phone">手机</label>
+	        <input class="form-control" id="phone" ng-model="sufansSysAngent.phone" placeholder="手机号码">
+		  </div>
+		  <div class="form-group">
+		    <label for="tel">座机</label>
+	        <input class="form-control" id="tel" ng-model="sufansSysAngent.tel" placeholder="格式如：0755-61732226">
+		  </div>
+		  <div class="form-group">
+		    <label for="company">公司</label>
+	        <input class="form-control" id="company" ng-model="sufansSysAngent.company" placeholder="所在公司/名下公司">
+		  </div>
+		  <div class="form-group">
+		    <label for="address">地址</label>
+	        <input class="form-control" id="tel" ng-model="sufansSysAngent.address" placeholder="详细地址">
+		  </div>
+		  <div class="form-group">
+		    <label for="agentTppeId">类型</label>
+	        <!-- <input class="form-control" id="agentTppeId" ng-model="sufansSysAngent.agentTppeId" placeholder="代理商类型"> -->
+	        <select id="agentTppeId" class="form-control" ng-model="sufansSysAngent.agentTppeId"  placeholder="代理商类型">
+	        <option value="1">华中地区总代</option>
+	        <option value="2">华南地区总代</option>
+	        <option value="3">华北地区总代</option>
+	        <option value="4">省级总代</option>
+	        <option value="5">市级总代</option>
+	        </select>
+		  </div>
+      </form>
+		
+		
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" class="btn btn-primary" ng-click="save()"> 保 存 </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

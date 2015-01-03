@@ -2,8 +2,8 @@ APP.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,  $u
 	$stateProvider.state('manageProduce', {
 		name: 'manageProduce',
 		url: '/manageProduce',
-	    templateUrl: 'manage_product.html',
-	    controller: 'manageProductCtrl'
+	    templateUrl: 'goods.html',
+	    controller: 'goodsCtrl'
 	  })
 	  .state('categoryManagement', {
 		  name: 'categoryManagement',
