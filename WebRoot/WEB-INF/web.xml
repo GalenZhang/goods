@@ -4,6 +4,11 @@
     <welcome-file>member/member.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/public/errors/errors.jsp</location>
+	</error-page>
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

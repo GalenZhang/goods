@@ -11,6 +11,9 @@ public class CustomSimpleMappingExceptionResolver extends SimpleMappingException
 	@Override
 	protected ModelAndView doResolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
+		
+		
+		
 		return super.doResolveException(request, response, handler, ex);
 	}
 

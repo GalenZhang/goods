@@ -89,6 +89,15 @@ public class CommonService implements IServiceBase{
 		commonDAO.deleteByProperty("id", id, clazz);
 	}
 
+	@Override
+	public void removeByID(int[] ids, Class<?> clazz) throws Exception
+	{
+		for (int id : ids)
+		{
+			commonDAO.deleteByProperty("id", id, clazz);	
+		}
+	}
+	
 	public int countByFK(String propertyName, Object value, Class<?> clazz) throws Exception
 	{
 		return commonDAO.count(propertyName, value, clazz);

@@ -5,7 +5,6 @@ import java.util.List;
 import com.sofans.entity.IBean;
 import com.sofans.entity.PageCondition;
 import com.sofans.entity.PageResult;
-import com.sofans.entity.goods.User;
 
 
 public interface IServiceBase {
@@ -33,6 +32,8 @@ public interface IServiceBase {
 	PageResult page(PageCondition pageCondition, Class<?> clazz) throws Exception;
 	
 	void removeByID(int id, Class<?> clazz) throws Exception;
+	
+	void removeByID(int[] ids, Class<?> clazz) throws Exception;
 	
 	int countByFK(Object value) throws Exception;
 	

@@ -8,7 +8,7 @@ public class PageResult extends Result{
 	
 	private int totalSize;
 	
-	private int pagesize = Constant.PAGE_SIZE;
+	private int pagesize;
 	
 	private List<IBean> list;
 	
@@ -33,6 +33,8 @@ public class PageResult extends Result{
 	}
 
 	public int getPagesize() {
+		if (pagesize == 0)
+			return Constant.PAGE_SIZE;
 		return pagesize;
 	}
 
