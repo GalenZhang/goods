@@ -4,14 +4,15 @@
 		<span id="address_msg"></span>
 	</div>
 	
-	<div ng-repeat="address in addressItems" style="border: 1px solid #ccc; margin-top: 15px;">
-	    <table>
+	<div ng-repeat="address in addressItems" style="border: 1px solid #ccc; margin-top: 15px; padding: 6px;">
+	    <table  style="width: 100%">
 	      <tr>
 	        <td>{{getIndex($index)}}收件人:{{address.receiverName}}</td>
 	        <td>电话:{{address.receiverPhone}}</td>
 	      </tr>
 	      <tr>
-	        <td>详细地址:{{address.address}}</td>
+	        <td>详细地址:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{address.address}}</td>
+	        <td style="text-align: right;"><a>删除</a></td>
 	      </tr>
 	    </table>
 	</div>
@@ -30,10 +31,6 @@
 						 id="receiver_name" />
 				</div>
 				<div class="txt-fld">
-					<label for=""> 地址:</label> <input type="text" name="addr"
-						id="addr" />
-				</div>
-				<div class="txt-fld">
 					<label for=""> 详细地址</label> <textarea id="address" rows="3" cols="37"></textarea>
 				</div>
 				<!-- 
@@ -47,7 +44,7 @@
 						id="receiver_phone" />
 				</div>
 				<div class="btn-fld">
-					<span id="saveAddress_msg" style="color: green"></span><input type="button" id="addAddressbutton" value="保存地址"/>
+					<span id="saveAddress_msg" style="color: green"></span><input type="button" id="addAddressbutton" ng-click="saveAddress()" value="保存地址"/>
 				</div>
 			
 		</div>

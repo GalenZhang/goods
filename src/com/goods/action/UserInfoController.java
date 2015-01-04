@@ -36,15 +36,14 @@ public class UserInfoController {
 	private IServiceBase userAddressServiceImpl;
 	
 	@RequestMapping(value="/member/saveAddress",method=RequestMethod.POST )
-	public @ResponseBody String addAddressInfo(@RequestBody DeliverAddress deliverAddress){
+	public @ResponseBody String addAddressInfo(@RequestBody DeliverAddress deliverAddress,HttpServletRequest request, HttpServletResponse res){
 		
-		ActionContext ct= ActionContext.getContext();
-		HttpServletRequest request = (HttpServletRequest)ct.get(
-		    ServletActionContext.HTTP_REQUEST); 
-		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
 		
+		User user = (User) request.getSession().getAttribute(Constant.USER);
+		System.out.println("userId="+user.getUsername());
 		try {
-			Integer id = (goodsSysUserServiceImpl.findByProperty("username", userId, User.class)).get(0).getId();
+			Integer id = (goodsSysUserServiceImpl.findByProperty("username", user.getUsername(), User.class)).get(0).getId();
+			System.out.println("id="+id);
 			deliverAddress.setUserId(id);
 			userAddressServiceImpl.save(deliverAddress);
 			return "添加成功!";
@@ -75,12 +74,12 @@ public class UserInfoController {
 	
 	@RequestMapping(value="/member/addressInfo")
 	public@ResponseBody List<DeliverAddress> loadAddressInfo(HttpServletRequest request, HttpServletResponse res){
-		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
-		if(userId!= null){
+		User luser = (User) request.getSession().getAttribute(Constant.USER);
+		if(luser.getUsername()!= null){
 			List<User> list = new ArrayList<User>();
 			List<DeliverAddress> list2 = new ArrayList<DeliverAddress>();
 			try {
-				list = goodsSysUserServiceImpl.findByProperty("username", userId, User.class);
+				list = goodsSysUserServiceImpl.findByProperty("username", luser.getUsername(), User.class);
 				System.out.println("list :" +list.size());
 				User user = list.get(0);
 				System.out.println("userId :"+user.getId());
