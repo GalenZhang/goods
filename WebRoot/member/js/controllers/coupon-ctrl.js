@@ -1,5 +1,6 @@
 /**
  * 
  */
-APP.controller("couponCtrl", function($scope, couponService) {
+APP.controller("couponCtrl", function($rootScope, $scope, couponService, memberService) {
+	$rootScope.pageID = 5;
 });

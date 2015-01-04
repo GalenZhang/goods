@@ -1,4 +1,4 @@
-APP.controller("loginCtrl", function($scope, loginService) {
+APP.controller("loginCtrl", function($rootScope, $scope, loginService, memberService) {
 	
 	var user = $scope.user = {username: '', password : ''};
 	
@@ -76,9 +76,11 @@ APP.controller("loginCtrl", function($scope, loginService) {
 			//update the value on the top of page. login out -> login
 			if (data.result)
 			{
-				$scope.username = data.obj;
+				$scope.username = data.obj.username;
 				$scope.isLogin = true;
 				$scope.loginWord = ' 退出';
+				memberService.user = data.obj;
+				$rootScope.user = data.obj;
 			}
 			else
 			{
@@ -86,10 +88,6 @@ APP.controller("loginCtrl", function($scope, loginService) {
 				$scope.isLogin = false;
 				$scope.loginWord = ' 登录';
 			}
-		}
-		else
-		{
-			return;
 		}
 	});
 	

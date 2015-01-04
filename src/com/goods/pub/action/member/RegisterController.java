@@ -32,7 +32,7 @@ public class RegisterController extends ActionSupport {
 		int id = 0;
 		try {
 			user.setState(1);
-			user.setIs_admin(0);
+			user.setIsAdmin(0);
 			id = goodsSysUserServiceImpl.save(user);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -92,9 +92,7 @@
 <SCRIPT src="js/controllers/coupon-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/criticism-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/order-ctrl.js"></SCRIPT>
-<SCRIPT src="js/controllers/test-order-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/receivedaddress-ctrl.js"></SCRIPT>
-<script src="js/controllers/order-route-ctrl.js"></script>
 <script src="order/js/controllers/waitingforpay-ctrl.js"></script>
 <script src="order/js/controllers/sending-ctrl.js"></script>
 <script src="order/js/controllers/waitingforcriticism-ctrl.js"></script>

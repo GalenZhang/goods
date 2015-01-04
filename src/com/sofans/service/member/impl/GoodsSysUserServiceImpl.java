@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.sofans.dao.sys.CommonDAO;
 import com.sofans.entity.IBean;
 import com.sofans.entity.goods.User;
+import com.sofans.exception.CommonException;
 import com.sofans.service.CommonService;
 import com.sofans.util.MD5Util;
 
@@ -33,8 +34,9 @@ public class GoodsSysUserServiceImpl extends CommonService {
 		if (MD5Util.verify(user.getPassword(), user.getUsername(), oldpwd)) {
 			user.setPassword(MD5Util.salt(user.getUsername(), newpwd));
 			commonDAO.update(user);
-
+			return;
 		}
+		throw new CommonException("旧密码错误");
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.goods.pub.action.member;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,36 +25,33 @@ public class GLoginController {
 	private ILoginService goodsLoginServiceImpl;
 	
 	@RequestMapping(value = "/pub/member/login", method = RequestMethod.POST)
-	public @ResponseBody Result login(HttpServletRequest request, HttpServletResponse res, @RequestBody User u) {
+	public @ResponseBody Result login(@RequestBody User u, HttpServletRequest request) {
 		User user = null;
 		try {
 			user = goodsLoginServiceImpl.goodsLogin(u.getUsername(), u.getPassword());
-			request.getSession().setAttribute(Constant.USER_ID, user.getId());
-			request.getSession().setAttribute(Constant.USER_NAME, user.getUsername());
-			request.getSession().setAttribute(Constant.USER_ROLE, user.getIs_admin());
+			user.setPassword("");
+			request.getSession().setAttribute(Constant.USER, user);
 		} catch (Exception e) {
 			log.error(e);
 			return new Result(false, "登陆的败!");
 		}
 		
-		return new Result(true, "登陆成功！", user.getIs_admin());
+		return new Result(true, "登陆成功！", user.getIsAdmin());
 	}
 	
 	@RequestMapping(value = "/pub/member/getuser", method = RequestMethod.GET)
 	public @ResponseBody Result getUser(HttpServletRequest request){
-		String username = String.valueOf(request.getSession().getAttribute(Constant.USER_NAME));
-		if (org.apache.commons.lang.StringUtils.isEmpty(username))
+		User user = (User)request.getSession().getAttribute(Constant.USER);
+		if (user != null)
 		{
-			username = "";
-			return new Result(false, "读取用户数据成功！", username);
+			return new Result(true, "读取用户数据成功！", user);
 		}
-		return new Result(true, "读取用户数据成功！", username);
+		return new Result(false, "读取用户数据失败！");
 	}
 	
 	@RequestMapping(value = "/pub/member/loginout", method = RequestMethod.GET)
 	public @ResponseBody Result loginOut(HttpServletRequest request){
-		request.getSession().removeAttribute(Constant.USER_ID);
-		request.getSession().removeAttribute(Constant.USER_ROLE);
+		request.getSession().removeAttribute(Constant.USER);
 		return new Result(true, "成功退出！");
 	}
 	

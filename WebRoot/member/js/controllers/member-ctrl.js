@@ -3,13 +3,19 @@
  */
 
 APP.controller("memberCtrl", function($rootScope, $scope, memberService) {
-	$scope.pageID = 1;//default selected;
+	$scope.pageID = angular.isUndefined(memberService.pageID) ? 1 : memberService.pageID;//default selected;
+	
+	$rootScope.$watch('pageID', function(to, from){
+		$scope.pageID = $rootScope.pageID;
+    });
+	
 	$scope.pageSelect = function(pageID)
 	{
 		$scope.pageID = pageID;
 	};
 	
-
+	
+	
 	/*
 
 	$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){

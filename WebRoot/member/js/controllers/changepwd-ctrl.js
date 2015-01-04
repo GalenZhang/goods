@@ -1,43 +1,41 @@
 /**
  * 
  */
-APP.controller("changepwdCtrl", function($scope, changepwdService, accountService) {
+APP.controller("changepwdCtrl", function($rootScope, $scope, changepwdService, memberService) {
 	
-	accountService.getUserInfo($scope);
-	$scope.$on("getUserInfo", function(event, data) {
-		if (data != null) {
-			user = data[0];
-			$scope.id = user.id;
-		}
-
+	$scope.password = {};
+	$rootScope.pageID = 7;
+	
+	$scope.$on('changePassword', function(event, data){
+		alert(data.desc);
 	});
 	
-	$("#password_saveBtn").click(function(){
-		
-		var oldpassword = $("#oldpassword").val();
-		var newpassword = $("#newpassword").val();
-		var renewpassword = $("#renewpassword").val();
-		var id = $("#changePwd_id").val();
-		
-		if($.trim(oldpassword) == ''|| $.trim(newpassword) == ''){
-			$("#change_password_msg").html("<font color='red'>密码不能为空！</font>");
+	$scope.changePassword = function(){
+		if (!$scope.password.newpassword)
+		{
+			alert('新密码不能为空！');
+			return;
+		}
+		if (!$scope.password.oldpassword)
+		{
+			alert('旧密码不能为空！');
+			return;
+		}
+		if ($scope.password.newpassword != $scope.password.newpassword2)
+		{
+			alert('两次输入密码不一至！');
 			return;
 		}
 		
-		if(!newpassword == renewpassword){
-			$("#change_password_msg").html("<font color='red'>新密码输入不一致！</font>");
+		if ($scope.password.newpassword.length < 6)
+		{
+			alert("新密码不能小6位");
 			return;
-		}
-		
-		changepwdService.changePassword($scope,oldpassword,newpassword,id);
-		$scope.$on("changePassword",function(event,data){
-			$("#change_password_msg").html("<font color='green'>"+data+"</font>");
-			$("#oldpassword").val('');
-			$("#newpassword").val('');
-			$("#renewpassword").val('');
-		});
-		
-	});
+		}		
+		var user = memberService.getUser();
+		$scope.password.id = user.id;
+		changepwdService.changePassword($scope, $scope.password);
+	};
 	
 	
 	

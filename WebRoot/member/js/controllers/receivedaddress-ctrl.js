@@ -1,8 +1,9 @@
 /**
  * 
  */
-APP.controller("receivedaddressCtrl", function($scope, receivedaddressService,$rootScope, $http, $compile) {
+APP.controller("receivedaddressCtrl", function($rootScope, $scope, receivedaddressService, memberService) {
 	
+	$rootScope.pageID = 8;
 	receivedaddressService.addressInfo($scope);
 	$scope.$on("addressInfo",function(event,data){
 		if(data == ''){

@@ -5,6 +5,16 @@ import org.json.simple.JSONObject;
 import com.sofans.entity.Result;
 
 public class ResultUtil {
+	
+	public static String UPDATE_ERROR = "更新出错！";
+	
+	public static String LOAD_ERROR = "加载出错！";
+	
+	public static String ADD_ERROR = "添加出错！";
+	
+	public static String REMOVE_ERROR = "删除出错！";
+	
+	public static String OPERATION_SECCESS = "操作成功!";
 
 	public static Result getResult(boolean rs, String desc){
 		return new Result(rs, desc);

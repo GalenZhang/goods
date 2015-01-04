@@ -53,7 +53,7 @@ public class User implements IBean {
 	private Integer state;
 	
 	@Column(name="is_admin")
-	private Integer is_admin;
+	private Integer isAdmin;
 	
 	@Column(name="load_data")
 	private Timestamp loadData;
@@ -73,7 +73,7 @@ public class User implements IBean {
 	/** full constructor */
 	public User(Integer id, String username, String password, String trueName,
 			String idCard, String phone, String email, String city,
-			String address, String postCode, Integer integral,Integer state,Integer is_admin,
+			String address, String postCode, Integer integral,Integer state,Integer isAdmin,
 			Timestamp loadData) {
 		this.id = id;
 		this.username = username;
@@ -87,7 +87,7 @@ public class User implements IBean {
 		this.postCode = postCode;
 		this.integral = integral;
 		this.state = state;
-		this.is_admin = is_admin;
+		this.isAdmin = isAdmin;
 		this.loadData = loadData;
 	}
 
@@ -198,12 +198,12 @@ public class User implements IBean {
 		this.state = state;
 	}
 
-	public Integer getIs_admin() {
-		return is_admin;
+	public Integer getIsAdmin() {
+		return isAdmin;
 	}
 
-	public void setIs_admin(Integer is_admin) {
-		this.is_admin = is_admin;
+	public void setIsAdmin(Integer isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 }

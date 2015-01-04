@@ -42,6 +42,8 @@ public interface IServiceBase {
 	<T extends IBean> T findBySQL(Object value) throws Exception;
 	
 	<T extends IBean>void updata(T t)throws Exception;
+	
+	public <T extends IBean> void meger(T t) throws Exception;
 	/*
 	 * 
 	 */

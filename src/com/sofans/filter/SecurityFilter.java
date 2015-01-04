@@ -56,7 +56,7 @@ public class SecurityFilter implements Filter {
 		    }
 		    
 		    HttpSession session = req.getSession(); 
-		    if (session.getAttribute(Constant.USER_ID) == null) {
+		    if (session.getAttribute(Constant.USER) == null) {
 		    	res.sendRedirect(req.getContextPath()+"/public/login.html");
 		    	 return;
 		    }

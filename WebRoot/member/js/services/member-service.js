@@ -3,5 +3,10 @@
  */
 APP.service('memberService', ['httpService', function(httpService){
 	
-	return {};
+	return {
+		
+		getUser: function(){
+			return this.user;
+		}
+	};
 }]);

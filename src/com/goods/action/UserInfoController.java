@@ -1,7 +1,8 @@
-package com.goods.pub.action.member;
+package com.goods.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.sofans.constant.Constant;
+import com.sofans.entity.Result;
 import com.sofans.entity.goods.DeliverAddress;
 import com.sofans.entity.goods.User;
 import com.sofans.service.IServiceBase;
+import com.sofans.util.ResultUtil;
 
 @Controller
 public class UserInfoController {
@@ -32,7 +35,7 @@ public class UserInfoController {
 	@Autowired
 	private IServiceBase userAddressServiceImpl;
 	
-	@RequestMapping(value="/pub/member/saveAddress.do",method=RequestMethod.POST )
+	@RequestMapping(value="/member/saveAddress",method=RequestMethod.POST )
 	public @ResponseBody String addAddressInfo(@RequestBody DeliverAddress deliverAddress){
 		
 		ActionContext ct= ActionContext.getContext();
@@ -53,7 +56,7 @@ public class UserInfoController {
 	}
 	
 	
-	@RequestMapping(value="/pub/member/userinfo.do")
+	@RequestMapping(value="/member/userinfo")
 	public @ResponseBody List<User> loadUserInfo(HttpServletRequest request, HttpServletResponse res){
 		
 		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
@@ -70,7 +73,7 @@ public class UserInfoController {
 		return null;
 	}
 	
-	@RequestMapping(value="/pub/member/addressInfo.do")
+	@RequestMapping(value="/member/addressInfo")
 	public@ResponseBody List<DeliverAddress> loadAddressInfo(HttpServletRequest request, HttpServletResponse res){
 		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
 		if(userId!= null){
@@ -91,49 +94,34 @@ public class UserInfoController {
 		return null;
 	}
 	
-	@RequestMapping(value="/pub/member/updatePassword.do",method = RequestMethod.GET)
-	public @ResponseBody String changePassword(String pwd, String pwd2, int id){
-		ActionContext ct= ActionContext.getContext();
-		HttpServletRequest request = (HttpServletRequest)ct.get(
-		    ServletActionContext.HTTP_REQUEST); 
-		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
-		if(userId != null){
-			try {
-				goodsSysUserServiceImpl.changePassword(id, pwd, pwd2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "修改失败！";
-			}
-			
-			return "修改成功！";
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value="/member/updatePassword",method = RequestMethod.POST)
+	public @ResponseBody Result changePassword(@RequestBody Map jsonObj){
+		String oldPassword = (String)jsonObj.get("oldpassword");
+		String newPassword = (String)jsonObj.get("newpassword");
+		int id = (int)jsonObj.get("id");
+		try {
+			goodsSysUserServiceImpl.changePassword(id, oldPassword, newPassword);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return ResultUtil.getResult(false, e.getMessage());
 		}
-		request.getSession().removeAttribute(Constant.USER_ID);
-		return "请重新登陆！";
+		return ResultUtil.getResult(true, ResultUtil.OPERATION_SECCESS);
 	};
 	
-	@RequestMapping(value="/pub/member/updateuser.do",method=RequestMethod.POST)
-	public @ResponseBody String saveUserInfo( @RequestBody User user){
-		List<User> list = new ArrayList<User>();
-		ActionContext ct= ActionContext.getContext();
-		HttpServletRequest request = (HttpServletRequest)ct.get(
-		    ServletActionContext.HTTP_REQUEST); 
-		String userId = (String) request.getSession().getAttribute(Constant.USER_ID);
-		if(userId != null){
-			try {
-				list = goodsSysUserServiceImpl.findByProperty("id", user.getId(), User.class);
-				User user2 = list.get(0);
-				user2.setEmail(user.getEmail());
-				user2.setPhone(user.getPhone());
-				goodsSysUserServiceImpl.updata(user2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "保存失败！";
-			}
-			return "保存成功！";
+	@RequestMapping(value="/member/updateuser",method=RequestMethod.POST)
+	public @ResponseBody Result saveUserInfo(HttpServletRequest request, @RequestBody User user0) {
+		try {
+			User u = goodsSysUserServiceImpl.findById(user0.getId(), User.class);
+			u.setPhone(user0.getPhone());
+			u.setEmail(user0.getEmail());
+			goodsSysUserServiceImpl.meger(u);
+			request.getSession().setAttribute(Constant.USER, u);
+		} catch (Exception e) {
+			log.error(e);
+			return ResultUtil.getResult(false, "更新出错！");
 		}
-		request.getSession().removeAttribute(Constant.USER_ID);
-		return "请重新登陆！";
-		
+		return ResultUtil.getResult(true, ResultUtil.OPERATION_SECCESS);
 	}
 
 }

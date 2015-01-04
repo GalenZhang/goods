@@ -2,40 +2,41 @@
  * 
  */
 
-APP.controller("accountCtrl", function($scope, accountService) {
+APP.controller("accountCtrl", function($rootScope, $scope, accountService, memberService, JSUtil) {
 
-	accountService.getUserInfo($scope);
-	$scope.$on("getUserInfo", function(event, data) {
-		if (data != null) {
-			user = data[0];
-			$scope.username = user.username;
-			$scope.id = user.id;
-			$scope.email = user.email;
-			$scope.phone = user.phone;
+	$rootScope.pageID = 6;
+	var account = $scope.account={};
+	$rootScope.$watch('user', function(to, from){
+		var user = memberService.getUser();
+		if (angular.isUndefined(user))
+		{
+			return;
 		}
-
+		$scope.account.username = user.username;
+		$scope.account.email = user.email;
+		$scope.account.phone = user.phone;
+		$scope.account.id = user.id;
+		$scope.account.isAdmin = user.isAdmin;
 	});
 
 	$scope.margeUser = function() {
-		$("#confirmMsg").html('');
-		$("#moileMsg").html('');
-		if(!checkSubmitEmail()) return; 
-		if(!checkSubmitMobil()) return;
+		if (!JSUtil.isEmail(account.email))
+		{
+			alert('非法邮箱');
+			return;
+		}
 		
-		var email = document.getElementById("email").value;
-		var phone = document.getElementById("phone").value;
+		if (!JSUtil.isMobile(account.phone))
+		{
+			alert('非法手机号');
+			return;
+		}
 
-		var user = {
-			id : $scope.id,
-			username : $scope.username,
-			email : email,
-			phone : phone,
-
-		};
-
-		accountService.saveUserInfo($scope, user);
+		debugger;
+		
+		accountService.saveUserInfo($scope, account);
 		$scope.$on("saveUserInfo", function(event, data) {
-			alert(data);
+			alert(data.desc);
 		});
 	};
 

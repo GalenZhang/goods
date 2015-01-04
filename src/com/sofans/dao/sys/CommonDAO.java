@@ -67,6 +67,16 @@ public class CommonDAO {
 		
 	}
 
+	public void meger(IBean entity){
+		log.debug("updata entity");
+		try {
+			getCurrentSession().merge(entity);
+		} catch (RuntimeException re) {
+			throw re;
+		}
+		
+	}
+	
 	public void deleteByProperty(String propertyName, Object value,
 			Class<?> clazz) throws Exception {
 

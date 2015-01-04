@@ -4,8 +4,8 @@
 APP.service('changepwdService', ['httpService', function(httpService){
 	
 	return {
-		changePassword:function(scope,pwd,pwd2,id){
-			httpService.get(scope, '../pub/member/updatePassword.do?pwd='+pwd+'&pwd2='+pwd2+'&id='+id).then(function(data) {
+		changePassword:function(scope, password){
+			httpService.post(scope, '/goods/member/updatePassword.do?a=1', password).then(function(data) {
 				scope.$broadcast('changePassword', data);
 			},function(data) {
 				alert('error');

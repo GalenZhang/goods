@@ -122,6 +122,12 @@ public class CommonService implements IServiceBase{
 	}
 
 	@Override
+	public <T extends IBean> void meger(T t) throws Exception {
+		commonDAO.meger(t);
+		
+	}
+	
+	@Override
 	public void changePassword(int id, String oldpwd, String newpwd) throws Exception {
 		// TODO Auto-generated method stub
 		

@@ -2,23 +2,22 @@
 
   <div>
   会员信息 -> 修改密码
-  <input type="hidden" id="changePwd_id" value="{{id}}" />
     <table>
       <tr>
         <td>旧密码:</td>
-        <td><input type="password" id="oldpassword" value="" /></td>
+        <td><input type="password" id="oldpassword" ng-model="password.oldpassword"/></td>
       </tr>
       <tr>
         <td>新密码:</td>
-        <td><input type="password" id="newpassword" value=""/></td>
+        <td><input type="password" id="newpassword" ng-model="password.newpassword"/></td>
       </tr>
       <tr>
         <td>确认新密码:</td>
-        <td><input type="password" id="renewpassword" value=""/></td>
+        <td><input type="password" id="renewpassword" ng-model="password.newpassword2"/></td>
       </tr>
     </table>
     <span id="change_password_msg"></span><br>
-    <input type="button" id="password_saveBtn" value="保存"/>
+    <input type="button" id="password_saveBtn" value="保存" ng-click="changePassword()"/>
   </div>
 
 </div>

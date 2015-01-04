@@ -1,5 +1,6 @@
 /**
  * 
  */
-APP.controller("criticismCtrl", function($scope, criticismService) {
+APP.controller("criticismCtrl", function($rootScope, $scope, criticismService, memberService) {
+	$rootScope.pageID = 2;
 });

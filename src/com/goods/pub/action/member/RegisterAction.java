@@ -37,7 +37,7 @@ public class RegisterAction extends ActionSupport{
 		
 		user.setUsername(username);
 		user.setPassword(password);
-		user.setIs_admin(0);
+		user.setIsAdmin(0);
 		user.setState(1);
 		int id = 0;
 		try {
