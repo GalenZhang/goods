@@ -1,0 +1,102 @@
+<div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">商品信息</h4>
+      </div>
+      <div class="modal-body">
+	
+	
+	<tabset>
+      <tab heading="商品信息" select = "selected()">
+      
+       <form role="form">
+			<div class="form-group">
+			    <label for="company">商品名称</label>
+			    <input type="text" class="form-control" ng-model="goods.goodName">
+		  	</div>
+		   	<div class="form-group">
+			    <label for="province">商品货号</label>
+			    <input type="text" class="form-control" ng-model="goods.goodNumber">
+			</div>
+			<div class="form-group">
+			    <label for="company">商品分类</label>
+			    <select class="form-control"ng-model="goods.goodsClassId">
+					<option value="">-- 请选择 --</option>
+					<option ng-repeat="category in categories" value="{{category.id}}">
+						{{category.name}}
+					</option>
+				</select>
+          	</div>
+          	<div class="form-group">
+			    <label for="company">品牌</label>
+			    <select class="form-control"ng-model="goods.brand">
+					<option value="">-- 请选择 --</option>
+					<option ng-repeat="brand in brands" value="{{brand.id}}">
+						{{brand.name}}
+					</option>
+				</select>
+          	</div>
+		   	<div class="form-group">
+			    <label for="province">价格</label>
+			    <input type="text" class="form-control" id="province" ng-model="goods.marketPrice">
+			</div>
+			<div class="form-group">
+			    <label for="province">产品设置</label>
+			    <input type="checkbox" id="isHot" value="1" ng-model="goods.isHot">热销
+			    <input type="checkbox" id="isDiscount" value="1" ng-model="goods.isDiscount">折
+			    <input type="checkbox" id="isNew" value="1" ng-model="goods.isNew">新品
+			    <input type="checkbox" id="isPefect" value="1" ng-model="goods.isPefect">精品
+			</div>
+		</form>
+      
+      </tab>
+      <tab heading="商品详情" select = "selected()">
+	 	<form>
+			<textarea name="content" style="width:800px;height:200px;"></textarea>
+		</form>  	
+	      </tab>
+    </tabset>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> 关 闭 </button>
+        <button type="button" class="btn btn-primary" ng-click="save()"> 保 存 </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<script charset="utf-8" src="../nkindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="../nkindeditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="../nkindeditor/plugins/code/prettify.js"></script>
+	<script>
+
+	$(function() {
+		var editor = KindEditor.create('textarea[name="content"]');
+	});
+	
+		/* KindEditor.ready(function(K) {
+			alert(33);
+			var editor1 = K.create('textarea[name="content1"]', {
+				cssPath : '../plugins/code/prettify.css',
+				uploadJson : '/goods/upload/upload',
+				fileManagerJson : '../jsp/file_manager_json.jsp',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['example'].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['example'].submit();
+					});
+				}
+			});
+			prettyPrint();
+		}); */
+	</script>

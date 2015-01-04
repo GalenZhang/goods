@@ -2,7 +2,7 @@
  * 
  */
 
-var APP = angular.module('APP', ['ui.router']);
+var APP = angular.module('APP', ['ui.router', 'ui.bootstrap']);
 APP.constant('JSUtil', {
 	isEmpty : function(obj) {
 		return !angular.isDefined(obj) || obj === null || '' == obj;

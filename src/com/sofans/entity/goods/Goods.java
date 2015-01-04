@@ -28,7 +28,7 @@ public class Goods implements IBean {
 	private String goodName;
 	private String goodNumber;
 	private String introduce;
-	private String brand;
+	private int brand;
 	private Float weight;
 	private String image;
 	private float marketPrice;
@@ -59,7 +59,7 @@ public class Goods implements IBean {
 	}
 
 	public Goods(int goodsClassId, String goodName, String goodNumber,
-			String introduce, String brand, Float weight, String image,
+			String introduce, int brand, Float weight, String image,
 			float marketPrice, float memberPrice, Short isHot,
 			Short isDiscount, Short isNew, Short isPefect, Integer gsequence,
 			Integer stock, Integer soldout, Short status, Date addData) {
@@ -132,11 +132,11 @@ public class Goods implements IBean {
 	}
 
 	@Column(name = "brand", length = 100)
-	public String getBrand() {
+	public int getBrand() {
 		return this.brand;
 	}
 
-	public void setBrand(String brand) {
+	public void setBrand(int brand) {
 		this.brand = brand;
 	}
 

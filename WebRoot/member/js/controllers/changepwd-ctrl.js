@@ -36,9 +36,4 @@ APP.controller("changepwdCtrl", function($rootScope, $scope, changepwdService, m
 		$scope.password.id = user.id;
 		changepwdService.changePassword($scope, $scope.password);
 	};
-	
-	
-	
-	
-	
 });

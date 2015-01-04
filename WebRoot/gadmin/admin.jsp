@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <dd ng-class="{'cur': pageID == 1}"><a href="#/manageProduce" ng-click="pageSelect(1)">产品管理</a></dd>
             <dd ng-class="{'cur': pageID == 2}"><a href="#/categoryManagement" ng-click="pageSelect(2)">分类管理</a></dd>
             <dd ng-class="{'cur': pageID == 3}"><a href="#/judgeCriticism" ng-click="pageSelect(3)">评论管理</a></dd>
-            
+            <dd ng-class="{'cur': pageID == 4}"><a href="#/judgeCriticism" ng-click="pageSelect(4)">品牌管理</a></dd>
         </dl>
     </div>
     <!--/left-->
@@ -48,17 +48,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <SCRIPT src="js/admin-route.js"></SCRIPT>
 
 <!-- service -->
+<SCRIPT src="../member/js/services/member-service.js"></SCRIPT>
 <SCRIPT src="js/services/admin-service.js"></SCRIPT>
-<SCRIPT src="js/services/category-management-service.js"></SCRIPT>
+<SCRIPT src="js/services/category-service.js"></SCRIPT>
 <SCRIPT src="js/services/goods-service.js"></SCRIPT>
 <SCRIPT src="js/services/judge-criticism-service.js"></SCRIPT>
+<SCRIPT src="js/services/brand-service.js"></SCRIPT>
 <!-- service -->
 
 <!-- controller -->
 <SCRIPT src="js/controllers/admin-ctrl.js"></SCRIPT>
-<SCRIPT src="js/controllers/category-management-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/category-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/goods-ctrl.js"></SCRIPT>
 <SCRIPT src="js/controllers/judge-criticism-ctrl.js"></SCRIPT>
+<SCRIPT src="js/controllers/brand-ctrl.js"></SCRIPT>
 <!-- controller -->
 
 </html>
