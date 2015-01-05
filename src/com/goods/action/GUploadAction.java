@@ -1,15 +1,11 @@
 package com.goods.action;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,13 +16,14 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
-import org.json.simple.JSONObject;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.json.annotations.JSON;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-@ParentPackage("struts-default")
-@Namespace(value = "/upload")
+@ParentPackage("json-default") 
+@Namespace(value = "/nkindeditor")
 public class GUploadAction extends ActionSupport {
 
 	/**
@@ -37,6 +34,8 @@ public class GUploadAction extends ActionSupport {
 	private String[] imgFileFileName; // 文件名称
 	private String[] imgFileContentType; // 文件类型
 	private static long maxSize = 1000000;
+	public Map<String, String> obj;
+	
 	private static Map<String, String> extMap = new HashMap<String, String>();
 	static {
 
@@ -46,19 +45,22 @@ public class GUploadAction extends ActionSupport {
 		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
 	}
+	
 
-	@SuppressWarnings("unchecked")
-	@Action(value = "upload")
-	public void upload() throws Exception {
+	@Action(value = "upload",  results={
+			@Result(name = "json",type="json")
+			})
+	public @ResponseBody String upload() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setCharacterEncoding("UTF-8");
-		
+		obj = new HashMap<String, String>();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter writer = response.getWriter();
+		//PrintWriter writer = response.getWriter();
 		if (!ServletFileUpload.isMultipartContent(request)) {
-			writer.println(getError("请选择文件。"));
-			return;
+			//writer.println(getError("请选择文件。"));
+			setError("上传失败");
+			return "json";
 		}
 
 		String savePath = ServletActionContext.getServletContext().getRealPath(
@@ -88,69 +90,33 @@ public class GUploadAction extends ActionSupport {
 						imgFileFileName[i].lastIndexOf(".") + 1).toLowerCase();
 
 				if (extMap.get(dirName).indexOf(fileExt) < 0) {
-					writer.println(getError("上传文件扩展名是不允许的扩展名。\n只允许"
-							+ extMap.get(dirName) + "格式。"));
-					return;
+//					writer.println(getError("上传文件扩展名是不允许的扩展名。\n只允许"
+//							+ extMap.get(dirName) + "格式。"));
+					setError("上传失败");
+					return "json";
 				}
 				String newFileName = df.format(new Date()) + "_"
 						+ new Random().nextInt(1000) + "." + fileExt;
 				File savefile = new File(savedir, newFileName);
 
 				if (imgFile[i].length() > maxSize) {
-					writer.println(getError("上传文件大小超过限制。"));
-					return;
+					//writer.println(getError("上传文件大小超过限制。"));
+					setError("上传失败");
+					return "json";
 				}
 
 				FileUtils.copyFile(imgFile[i], savefile);
-				JSONObject obj = new JSONObject();
-				obj.put("error", 0);
+				obj.put("error", "0");
 				obj.put("url", saveUrl + newFileName);
-				writer.println(obj.toJSONString());
 			}
-			ActionContext.getContext().put("message", "文件上传成功");
+			//ActionContext.getContext().put("message", "文件上传成功");
+			//obj = ResultUtil.getJSONObject(1, "上传失败");
 		}
 		
-		writer.println(getError("上传文件大小超过限制。"));
-		return;
+		return "json";
 	}
 
-	public void addActionError(String anErrorMessage) {
-		// 这里要先判断一下，是我们要替换的错误，才处理
-
-		if (anErrorMessage
-				.startsWith("the request was rejected because its size")) {
-
-			Matcher m = Pattern.compile("//d+").matcher(anErrorMessage);
-
-			String s1 = "";
-
-			if (m.find())
-				s1 = m.group();
-
-			String s2 = "";
-
-			if (m.find())
-				s2 = m.group();
-
-			try {
-				ServletActionContext.getResponse().getWriter().println(getError("上传文件大小超过限制。"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			//super.addActionError("你上传的文件大小（" + s1 + "）超过允许的大小（" + s2 + "）");
-			return;
-			
-			// 偷梁换柱，将信息替换掉
-			
-			// 也可以改为在Field级别的错误
-			// super.addFieldError("file","你上传的文件大小（" + s1 + "）超过允许的大小（" + s2 +
-			// "）");
-
-		} else {// 否则按原来的方法处理
-			super.addActionError(anErrorMessage);
-		}
-	}
-	
+	@JSON(serialize=false)  
 	public File[] getImgFile() {
 		return imgFile;
 	}
@@ -159,6 +125,7 @@ public class GUploadAction extends ActionSupport {
 		this.imgFile = imgFile;
 	}
 
+	@JSON(serialize=false)  
 	public String[] getImgFileFileName() {
 		return imgFileFileName;
 	}
@@ -167,6 +134,7 @@ public class GUploadAction extends ActionSupport {
 		this.imgFileFileName = imgFileFileName;
 	}
 
+	@JSON(serialize=false)  
 	public String[] getImgFileContentType() {
 		return imgFileContentType;
 	}
@@ -175,12 +143,17 @@ public class GUploadAction extends ActionSupport {
 		this.imgFileContentType = imgFileContentType;
 	}
 
-	@SuppressWarnings("unchecked")
-	private String getError(String message) {
-		JSONObject obj = new JSONObject();
-		obj.put("error", 1);
+	public Map<String, String> getObj() {
+		return obj;
+	}
+
+	public void setObj(Map<String, String> obj) {
+		this.obj = obj;
+	}
+
+	private void setError(String message) {
+		obj.put("error", "1");
 		obj.put("message", message);
-		return obj.toJSONString();
 	}
 
 }

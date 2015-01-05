@@ -1,3 +1,4 @@
+/*@@ -1,318 +0,0 @@
 /*******************************************************************************
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
@@ -13,7 +14,7 @@ KindEditor.plugin('image', function(K) {
 		allowImageRemote = K.undef(self.allowImageRemote, true),
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		allowFileManager = K.undef(self.allowFileManager, false),
-		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
+		uploadJson =  '/goods/nkindeditor/upload',//K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
 		imageTabIndex = K.undef(self.imageTabIndex, 0),
 		imgPath = self.pluginsPath + 'image/images/',
 		extraParams = K.undef(self.extraFileUploadParams, {}),
@@ -188,9 +189,10 @@ KindEditor.plugin('image', function(K) {
 			form : K('.ke-form', div),
 			target : target,
 			width: 60,
-			afterUpload : function(data) {
+			afterUpload : function(data0) {
+				var data = data0.obj;
 				dialog.hideLoading();
-				if (data.error === 0) {
+				if (data.error == 0) {
 					var url = data.url;
 					if (formatUploadUrl) {
 						url = K.formatUrl(url, 'absolute');
@@ -206,6 +208,7 @@ KindEditor.plugin('image', function(K) {
 						K(".ke-refresh-btn", div).click();
 					}
 				} else {
+					alert('3333');
 					alert(data.message);
 				}
 			},

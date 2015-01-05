@@ -33,10 +33,26 @@ public class ResultUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public static JSONObject getJSONObject(int rs, String desc){
+		JSONObject obj = new JSONObject();
+		obj.put("error", 0);
+		obj.put("message", desc);
+		return obj;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static String getResult(int rs, String key, String desc){
 		JSONObject obj = new JSONObject();
 		obj.put("error", 0);
 		obj.put(key, desc);
 		return obj.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject getJSONObject(int rs, String key, String desc){
+		JSONObject obj = new JSONObject();
+		obj.put("error", 0);
+		obj.put(key, desc);
+		return obj;
 	}
 }
